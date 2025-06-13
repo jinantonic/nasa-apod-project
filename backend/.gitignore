@@ -1,0 +1,5 @@
+# Node.js dependencies folder (auto-generated, do not commit)
+node_modules/
+
+# Environment variables file (contains sensitive info like API keys)
+.env
