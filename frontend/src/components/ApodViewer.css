@@ -1,0 +1,19 @@
+.apod-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    text-align: center;
+    padding: 1rem;
+    font-family: sans-serif;
+}
+  
+.apod-image, .apod-video {
+    max-width: 100%;
+    border-radius: 12px;
+    margin: 1rem 0;
+}
+  
+.apod-description {
+    text-align: left;
+    margin-top: 1rem;
+    line-height: 1.5;
+}

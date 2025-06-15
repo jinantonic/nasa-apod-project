@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from 'react';
+import ApodViewer from './components/ApodViewer';
 
 function App() {
   const [apodData, setApodData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     fetch('http://localhost:5001/apod')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('네트워크 응답이 좋지 않습니다');
-        }
-        return response.json();
+      .then((res) => {
+        if (!res.ok) throw new Error('API 요청 실패');
+        return res.json();
       })
-      .then(data => {
+      .then((data) => {
         setApodData(data);
         setLoading(false);
       })
-      .catch(err => {
+      .catch((err) => {
         setError(err.message);
         setLoading(false);
       });
@@ -27,11 +26,8 @@ function App() {
   if (error) return <div>에러 발생: {error}</div>;
 
   return (
-    <div style={{ maxWidth: '600px', margin: 'auto', padding: '1rem', fontFamily: 'Arial, sans-serif' }}>
-      <h1>{apodData.title}</h1>
-      <img src={apodData.url} alt={apodData.title} style={{ width: '100%', borderRadius: '8px' }} />
-      <p>{apodData.date}</p>
-      <p>{apodData.explanation}</p>
+    <div className="App">
+      <ApodViewer data={apodData} loading={loading} error={error} />
     </div>
   );
 }
