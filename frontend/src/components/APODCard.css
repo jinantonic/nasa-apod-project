@@ -1,0 +1,60 @@
+.apod-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-top: 24px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+  
+.apod-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.25rem;
+}
+  
+.apod-date {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+  
+.apod-media {
+    margin-bottom: 1rem;
+}
+  
+.apod-image, .apod-video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+  
+.apod-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: justify;
+    color: #bcb7b7;
+}
+
+@media (max-width: 600px) {
+    .apod-card {
+      padding: 12px;
+    }
+  
+    .apod-title {
+      font-size: 1.5rem;
+    }
+  
+    .apod-description {
+      font-size: 0.95rem;
+    }
+  
+    .apod-image,
+    .apod-video {
+      border-radius: 8px;
+    }
+}
+  
+  

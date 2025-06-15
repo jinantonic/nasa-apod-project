@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import DatePicker from './components/DatePicker';
 import APODCard from './components/APODCard';
+import Loading from './components/Loading';
 import './App.css';
 
 function App() {
-  const today = new Date().toISOString().split("T")[0]; // 오늘 날짜를 YYYY-MM-DD 형식으로
+  const today = new Date().toISOString().split("T")[0];
   const [selectedDate, setSelectedDate] = useState(today);
   const [apodData, setApodData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     if (!selectedDate) return;
@@ -32,11 +34,25 @@ function App() {
   }, [selectedDate]);
 
   return (
-    <div className="app-container">
+    <div className={`app-container ${darkMode ? 'dark' : ''}`}>
+      <div className="toggle-container">
+        <label className="switch">
+          <input
+            type="checkbox"
+            checked={darkMode}
+            onChange={() => setDarkMode(!darkMode)}
+          />
+          <span className="slider round"></span>
+        </label>
+        <span className="toggle-label">
+          {darkMode ? '🌙 Dark Mode' : '☀️ Light Mode'}
+        </span>
+      </div>
+
       <h1>🌌 NASA APOD Explorer</h1>
       <DatePicker selectedDate={selectedDate} onDateChange={setSelectedDate} />
 
-      {loading && <p>Loading...</p>}
+      {loading && <Loading />}
       {error && <p className="error">Error: {error}</p>}
 
       {apodData && !loading && !error && (

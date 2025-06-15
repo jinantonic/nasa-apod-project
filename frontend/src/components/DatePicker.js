@@ -1,18 +1,16 @@
 import React from 'react';
+import './DatePicker.css';
 
 function DatePicker({ selectedDate, onDateChange }) {
-  const today = new Date().toISOString().split("T")[0];
-
   return (
-    <div style={{ margin: '1rem 0' }}>
-      <label htmlFor="date-picker">Select a date:</label>{' '}
+    <div className="datepicker-container">
+      <label htmlFor="date" className="datepicker-label">Select a date:</label>
       <input
-        id="date-picker"
         type="date"
+        id="date"
         value={selectedDate}
         onChange={(e) => onDateChange(e.target.value)}
-        min="1995-06-16"
-        max={today}
+        className="datepicker-input"
       />
     </div>
   );
