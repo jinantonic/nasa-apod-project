@@ -1,64 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import DatePicker from './components/DatePicker';
-import APODCard from './components/APODCard';
-import Loading from './components/Loading';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import NavBar from './components/NavBar';
+import Home from './pages/Home';
+import Favourites from './pages/Favourites';
 import './App.css';
 
 function App() {
-  const today = new Date().toISOString().split("T")[0];
-  const [selectedDate, setSelectedDate] = useState(today);
-  const [apodData, setApodData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    if (!selectedDate) return;
-
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const res = await fetch(`http://localhost:5001/apod?date=${selectedDate}`);
-        if (!res.ok) throw new Error('Failed to fetch');
-        const data = await res.json();
-        setApodData(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [selectedDate]);
-
   return (
-    <div className={`app-container ${darkMode ? 'dark' : ''}`}>
-      <div className="toggle-container">
-        <label className="switch">
-          <input
-            type="checkbox"
-            checked={darkMode}
-            onChange={() => setDarkMode(!darkMode)}
-          />
-          <span className="slider round"></span>
-        </label>
-        <span className="toggle-label">
-          {darkMode ? '🌙 Dark Mode' : '☀️ Light Mode'}
-        </span>
-      </div>
-
-      <h1>🌌 NASA APOD Explorer</h1>
-      <DatePicker selectedDate={selectedDate} onDateChange={setSelectedDate} />
-
-      {loading && <Loading />}
-      {error && <p className="error">Error: {error}</p>}
-
-      {apodData && !loading && !error && (
-        <APODCard data={apodData} />
-      )}
-    </div>
+    <Router>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/favourites" element={<Favourites />} />
+      </Routes>
+    </Router>
   );
 }
 
