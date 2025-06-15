@@ -4,7 +4,8 @@ import APODCard from './components/APODCard';
 import './App.css';
 
 function App() {
-  const [selectedDate, setSelectedDate] = useState('');
+  const today = new Date().toISOString().split("T")[0]; // 오늘 날짜를 YYYY-MM-DD 형식으로
+  const [selectedDate, setSelectedDate] = useState(today);
   const [apodData, setApodData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
