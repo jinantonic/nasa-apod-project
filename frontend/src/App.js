@@ -1,33 +1,46 @@
-import React, { useEffect, useState } from 'react';
-import ApodViewer from './components/ApodViewer';
+import React, { useState, useEffect } from 'react';
+import DatePicker from './components/DatePicker';
+import APODCard from './components/APODCard';
+import './App.css';
 
 function App() {
+  const [selectedDate, setSelectedDate] = useState('');
   const [apodData, setApodData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5001/apod')
-      .then((res) => {
-        if (!res.ok) throw new Error('API 요청 실패');
-        return res.json();
-      })
-      .then((data) => {
-        setApodData(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }, []);
+    if (!selectedDate) return;
 
-  if (loading) return <div>로딩중...</div>;
-  if (error) return <div>에러 발생: {error}</div>;
+    const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await fetch(`http://localhost:5001/apod?date=${selectedDate}`);
+        if (!res.ok) throw new Error('Failed to fetch');
+        const data = await res.json();
+        setApodData(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [selectedDate]);
 
   return (
-    <div className="App">
-      <ApodViewer data={apodData} loading={loading} error={error} />
+    <div className="app-container">
+      <h1>🌌 NASA APOD Explorer</h1>
+      <DatePicker selectedDate={selectedDate} onDateChange={setSelectedDate} />
+
+      {loading && <p>Loading...</p>}
+      {error && <p className="error">Error: {error}</p>}
+
+      {apodData && !loading && !error && (
+        <APODCard data={apodData} />
+      )}
     </div>
   );
 }

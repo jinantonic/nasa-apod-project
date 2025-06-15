@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,40 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+.app-container {
+  font-family: sans-serif;
+  text-align: center;
+  padding: 20px;
+  background: #0b0c10;
+  color: #f4f4f4;
+  min-height: 100vh;
+}
+
+input[type="date"] {
+  padding: 8px 12px;
+  font-size: 1rem;
+  margin: 10px;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+.apod-card {
+  background: #1f2833;
+  padding: 20px;
+  margin: 30px auto;
+  border-radius: 12px;
+  max-width: 800px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.apod-card img,
+.apod-card iframe {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
 }
