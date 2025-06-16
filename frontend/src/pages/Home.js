@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import DatePicker from '../components/DatePicker';
+import { FavouritesContext } from '../contexts/FavouritesContext';
 import APODCard from '../components/APODCard';
 import Loading from '../components/Loading';
 
@@ -9,6 +10,7 @@ function Home() {
   const [apodData, setApodData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { favourites, addFavourite } = useContext(FavouritesContext);
 
   useEffect(() => {
     if (!selectedDate) return;
@@ -31,20 +33,16 @@ function Home() {
     fetchData();
   }, [selectedDate]);
 
-  // 즐겨찾기 추가 함수
-  const addToFavourites = (item) => {
-    const stored = localStorage.getItem('favourites');
-    const favourites = stored ? JSON.parse(stored) : [];
-
-    if (favourites.find(fav => fav.date === item.date)) {
+  const handleAddFavourite = (item) => {
+    if (favourites.some(fav => fav.date === item.date)) {
       alert("This item is already in your favourites!");
       return;
     }
-
-    const updated = [...favourites, item];
-    localStorage.setItem('favourites', JSON.stringify(updated));
+    addFavourite(item);
     alert("Added to favourites!");
   };
+
+  const isFavourite = apodData && favourites.some(item => item.date === apodData.date);
 
   return (
     <div className="app-container">
@@ -57,9 +55,9 @@ function Home() {
       {apodData && !loading && !error && (
         <APODCard
           data={apodData}
-          showAddButton={true}       // 추가 버튼 보이기
-          showDeleteButton={false}   // 삭제 버튼 숨기기
-          onAdd={addToFavourites}    // 추가 함수 전달
+          showAddButton={!isFavourite}
+          showDeleteButton={false}
+          onAdd={() => handleAddFavourite(apodData)}
         />
       )}
     </div>

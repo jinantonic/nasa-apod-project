@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import './NavBar.css';
+import { ThemeContext } from '../contexts/ThemeContext';
 
-function NavBar({ darkMode, setDarkMode }) {
-  const toggleMode = () => setDarkMode(prev => !prev);
+function NavBar() {
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
 
   return (
     <nav className="navbar">
@@ -17,7 +18,7 @@ function NavBar({ darkMode, setDarkMode }) {
       </div>
       <div className="toggle-container">
         <label className="switch">
-          <input type="checkbox" checked={darkMode} onChange={toggleMode} />
+          <input type="checkbox" checked={darkMode} onChange={toggleDarkMode} />
           <span className="slider"></span>
         </label>
         <span className="toggle-label">{darkMode ? '🌙 Dark Mode' : '☀️ Light Mode'}</span>

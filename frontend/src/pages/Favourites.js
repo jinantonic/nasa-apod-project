@@ -1,22 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import APODCard from '../components/APODCard';
+import { FavouritesContext } from '../contexts/FavouritesContext';
 
 function Favourites() {
-  const [favourites, setFavourites] = useState([]);
-
-  useEffect(() => {
-    const stored = localStorage.getItem('favourites');
-    if (stored) {
-      setFavourites(JSON.parse(stored));
-    }
-  }, []);
-
-  // 삭제 함수
-  const handleDelete = (date) => {
-    const updated = favourites.filter(item => item.date !== date);
-    setFavourites(updated);
-    localStorage.setItem('favourites', JSON.stringify(updated));
-  };
+  const { favourites, removeFavourite } = useContext(FavouritesContext);
 
   return (
     <div className="app-container">
@@ -31,7 +18,7 @@ function Favourites() {
             data={item}
             showAddButton={false}
             showDeleteButton={true}
-            onDelete={handleDelete}
+            onDelete={() => removeFavourite(item.date)}
           />
         ))
       )}

@@ -2,7 +2,7 @@ import './APODCard.css';
 
 function APODCard({ data, showAddButton = true, onAdd, showDeleteButton = false, onDelete }) {
   return (
-    <div className="apod-card">
+    <div className="apod-card" role="region" aria-label={`APOD: ${data.title}`}>
       <h2 className="apod-title">{data.title}</h2>
       <p className="apod-date">{data.date}</p>
       
@@ -22,21 +22,23 @@ function APODCard({ data, showAddButton = true, onAdd, showDeleteButton = false,
 
       <p className="apod-description">{data.explanation}</p>
 
-      {/* Add to favourites 버튼 */}
       {showAddButton && (
         <button
-          className="favourite-button"
+          type="button"
+          className="favourite-button add-button"
           onClick={() => onAdd && onAdd(data)}
+          aria-label={`Add ${data.title} to favourites`}
         >
           Add to favourites ❤️
         </button>
       )}
 
-      {/* Delete 버튼 */}
       {showDeleteButton && (
         <button
+          type="button"
           className="favourite-button delete-button"
           onClick={() => onDelete && onDelete(data.date)}
+          aria-label={`Remove ${data.title} from favourites`}
         >
           Remove from favourites 🗑️
         </button>
