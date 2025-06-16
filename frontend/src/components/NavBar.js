@@ -2,15 +2,26 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './NavBar.css';
 
-function NavBar() {
+function NavBar({ darkMode, setDarkMode }) {
+  const toggleMode = () => setDarkMode(prev => !prev);
+
   return (
     <nav className="navbar">
-      <NavLink to="/" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'} end>
-        Home
-      </NavLink>
-      <NavLink to="/favourites" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-        Favourites
-      </NavLink>
+      <div>
+        <NavLink to="/" className="nav-link" end>
+          Home
+        </NavLink>
+        <NavLink to="/favourites" className="nav-link">
+          Favourites
+        </NavLink>
+      </div>
+      <div className="toggle-container">
+        <label className="switch">
+          <input type="checkbox" checked={darkMode} onChange={toggleMode} />
+          <span className="slider"></span>
+        </label>
+        <span className="toggle-label">{darkMode ? '🌙 Dark Mode' : '☀️ Light Mode'}</span>
+      </div>
     </nav>
   );
 }

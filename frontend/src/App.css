@@ -63,6 +63,11 @@ p {
   }
 }
 
+.apod-title {
+  color: #222; /* 라이트 모드용 기본 텍스트 색상 */
+  transition: color 0.3s;
+}
+
 /* 다크 모드 스타일 */
 .dark {
   background-color: #121212;
@@ -72,6 +77,10 @@ p {
 .dark .apod-card {
   background-color: #1e1e1e;
   color: #f1f1f1;
+}
+
+.dark .apod-title {
+  color: #80d8ff; /* 다크 모드에서 밝고 시원한 블루 계열 */
 }
 
 .dark input[type="date"] {
