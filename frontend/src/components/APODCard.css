@@ -40,21 +40,52 @@
 
 @media (max-width: 600px) {
     .apod-card {
-      padding: 12px;
+        padding: 12px;
     }
   
     .apod-title {
-      font-size: 1.5rem;
+        font-size: 1.5rem;
     }
   
     .apod-description {
-      font-size: 0.95rem;
+        font-size: 0.95rem;
     }
   
     .apod-image,
     .apod-video {
-      border-radius: 8px;
+        border-radius: 8px;
     }
 }
   
+.favourite-button {
+    margin-top: 16px;
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.favourite-button:hover {
+    background-color: #f50057;
+}
+
+.favourite-button.delete-button {
+    background-color: #ff4d4f;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    margin-top: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+}
+  
+  .favourite-button.delete-button:hover {
+    background-color: #d9363e;
+}
   
