@@ -4,27 +4,35 @@ import { GlobalContext } from '../contexts/GlobalContext';
 import './History.css';
 
 function History() {
-  const { history } = useContext(GlobalContext);
+  const { history, removeFromHistory } = useContext(GlobalContext);
   const navigate = useNavigate();
 
-  if (history.length === 0) {
-    return <p>No recently viewed dates yet.</p>;
-  }
+  const handleClick = (date) => {
+    navigate(`/?date=${date}`);
+  };
 
   return (
-    <div className="history-container">
-      <h1>🕒 Recently Viewed Dates</h1>
-      <div className="history-list">
-        {history.map(date => (
-          <button
-            key={date}
-            className="history-item"
-            onClick={() => navigate(`/?date=${date}`)}
-          >
-            {date}
-          </button>
-        ))}
-      </div>
+    <div className="app-container">
+      <h1>🕘 Recently Viewed</h1>
+      {history.length === 0 ? (
+        <p>You haven't viewed any dates yet.</p>
+      ) : (
+        <ul className="history-list">
+          {history.map((date) => (
+            <li key={date} className="history-item">
+              <span onClick={() => handleClick(date)} className="date-text">
+                {date}
+              </span>
+              <button
+                className="delete-button"
+                onClick={() => removeFromHistory(date)}
+              >
+                ❌
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

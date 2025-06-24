@@ -3,7 +3,7 @@ import React, { createContext, useState, useEffect } from 'react';
 export const GlobalContext = createContext();
 
 export function GlobalProvider({ children }) {
-  // Theme 상태
+  // 🌙 다크모드 상태
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem('darkMode') === 'true';
   });
@@ -14,7 +14,7 @@ export function GlobalProvider({ children }) {
 
   const toggleDarkMode = () => setDarkMode(prev => !prev);
 
-  // Favourites 상태
+  // ⭐ 즐겨찾기 상태
   const [favourites, setFavourites] = useState(() => {
     const stored = localStorage.getItem('favourites');
     return stored ? JSON.parse(stored) : [];
@@ -33,7 +33,7 @@ export function GlobalProvider({ children }) {
     localStorage.setItem('favourites', JSON.stringify(updated));
   };
 
-  // 🕓 검색 히스토리
+  // 🕘 검색 히스토리 상태
   const [history, setHistory] = useState(() => {
     const stored = localStorage.getItem('history');
     return stored ? JSON.parse(stored) : [];
@@ -42,7 +42,13 @@ export function GlobalProvider({ children }) {
   const addToHistory = (date) => {
     if (!date) return;
     if (history[0] === date) return;
-    const updated = [date, ...history.filter(d => d !== date)].slice(0, 10); // 최대 10개 유지
+    const updated = [date, ...history.filter(d => d !== date)].slice(0, 10);
+    setHistory(updated);
+    localStorage.setItem('history', JSON.stringify(updated));
+  };
+
+  const removeFromHistory = (date) => {
+    const updated = history.filter(d => d !== date);
     setHistory(updated);
     localStorage.setItem('history', JSON.stringify(updated));
   };
@@ -55,7 +61,8 @@ export function GlobalProvider({ children }) {
       addFavourite,
       removeFavourite,
       history,
-      addToHistory
+      addToHistory,
+      removeFromHistory // ✅ 추가됨!
     }}>
       {children}
     </GlobalContext.Provider>
