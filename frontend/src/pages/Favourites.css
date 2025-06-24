@@ -1,0 +1,12 @@
+.sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+  
+.sort-controls select {
+    padding: 4px 8px;
+    font-size: 1rem;
+    border-radius: 4px;
+}
