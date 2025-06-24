@@ -19,7 +19,7 @@
     background-color: #e0e7ff;
 }
   
-.date-text {
+.history-date {
     cursor: pointer;
     flex-grow: 1;
 }
@@ -36,5 +36,24 @@
   
 .delete-button:hover {
     color: #e63946;
+}
+  
+.sort-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+  
+.sort-buttons button {
+    padding: 6px 12px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+  
+.sort-buttons button.active {
+    background-color: #333;
+    color: white;
 }
   
