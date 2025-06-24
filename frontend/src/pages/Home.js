@@ -6,6 +6,7 @@ import Loading from '../components/Loading';
 
 function Home() {
   const today = new Date().toISOString().split("T")[0];
+  const minDate = '1995-06-16';  // APOD 최초 날짜
   const [selectedDate, setSelectedDate] = useState(today);
   const [apodData, setApodData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -14,6 +15,21 @@ function Home() {
 
   useEffect(() => {
     if (!selectedDate) return;
+
+    // 오늘 이후 날짜면 에러
+    if (selectedDate > today) {
+      setApodData(null);
+      setError("You cannot select a future date.");
+      setLoading(false);
+      return;
+    }
+    // 최소 날짜 이전이면 에러
+    if (selectedDate < minDate) {
+      setApodData(null);
+      setError(`Date cannot be earlier than ${minDate}.`);
+      setLoading(false);
+      return;
+    }
 
     const fetchData = async () => {
       setLoading(true);
@@ -31,7 +47,7 @@ function Home() {
     };
 
     fetchData();
-  }, [selectedDate]);
+  }, [selectedDate, today]);
 
   const handleAddFavourite = (item) => {
     if (favourites.some(fav => fav.date === item.date)) {
@@ -47,7 +63,12 @@ function Home() {
   return (
     <div className="app-container">
       <h1>🌌 NASA APOD Explorer</h1>
-      <DatePicker selectedDate={selectedDate} onDateChange={setSelectedDate} />
+      <DatePicker 
+        selectedDate={selectedDate} 
+        onDateChange={setSelectedDate} 
+        min={minDate} 
+        max={today} 
+      />
 
       {loading && <Loading />}
       {error && <p className="error">Error: {error}</p>}
