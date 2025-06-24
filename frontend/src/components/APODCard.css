@@ -50,11 +50,11 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .apod-card {
-      margin: 16px 0;
-      padding: 12px;
-      width: 100%;
+        margin: 20px 10px;  /* 좌우 마진 줄임 */
+        padding: 15px;      /* 패딩 약간 축소 */
+        max-width: 100%;    /* 가로폭 꽉 채우기 */
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
   
@@ -75,8 +75,8 @@
     .favourite-button,
     .favourite-button.delete-button {
       width: 100%;
-      font-size: 1.1rem;
-      padding: 12px;
+      font-size: 0.9rem;
+      padding: 8px 12px;  /* 버튼 패딩 축소 */
     }
 }
   
