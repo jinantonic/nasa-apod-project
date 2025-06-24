@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import DatePicker from '../components/DatePicker';
-import { FavouritesContext } from '../contexts/FavouritesContext';
 import APODCard from '../components/APODCard';
 import Loading from '../components/Loading';
+import { GlobalContext } from '../context/GlobalContext';  // FavouritesContext → GlobalContext로 변경
 
 function Home() {
   const today = new Date().toISOString().split("T")[0];
@@ -11,19 +11,18 @@ function Home() {
   const [apodData, setApodData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { favourites, addFavourite } = useContext(FavouritesContext);
+  const { favourites, addFavourite } = useContext(GlobalContext);
 
   useEffect(() => {
     if (!selectedDate) return;
 
-    // 오늘 이후 날짜면 에러
     if (selectedDate > today) {
       setApodData(null);
       setError("You cannot select a future date.");
       setLoading(false);
       return;
     }
-    // 최소 날짜 이전이면 에러
+
     if (selectedDate < minDate) {
       setApodData(null);
       setError(`Date cannot be earlier than ${minDate}.`);

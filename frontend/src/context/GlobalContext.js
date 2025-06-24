@@ -1,8 +1,20 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
-export const FavouritesContext = createContext();
+export const GlobalContext = createContext();
 
-export function FavouritesProvider({ children }) {
+export function GlobalProvider({ children }) {
+  // Theme 상태
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem('darkMode') === 'true';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('darkMode', darkMode);
+  }, [darkMode]);
+
+  const toggleDarkMode = () => setDarkMode(prev => !prev);
+
+  // Favourites 상태
   const [favourites, setFavourites] = useState(() => {
     const stored = localStorage.getItem('favourites');
     return stored ? JSON.parse(stored) : [];
@@ -22,8 +34,14 @@ export function FavouritesProvider({ children }) {
   };
 
   return (
-    <FavouritesContext.Provider value={{ favourites, addFavourite, removeFavourite }}>
+    <GlobalContext.Provider value={{
+      darkMode,
+      toggleDarkMode,
+      favourites,
+      addFavourite,
+      removeFavourite
+    }}>
       {children}
-    </FavouritesContext.Provider>
+    </GlobalContext.Provider>
   );
 }

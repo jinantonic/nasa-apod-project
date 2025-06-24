@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import './NavBar.css';
-import { ThemeContext } from '../contexts/ThemeContext';
+import { GlobalContext } from '../context/GlobalContext';  // ThemeContext → GlobalContext로 변경
 
 function NavBar() {
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
+  const { darkMode, toggleDarkMode } = useContext(GlobalContext);
 
   return (
     <nav className="navbar">

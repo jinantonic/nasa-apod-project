@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import APODCard from '../components/APODCard';
-import { FavouritesContext } from '../contexts/FavouritesContext';
+import { GlobalContext } from '../context/GlobalContext';  // FavouritesContext → GlobalContext로 변경
 
 function Favourites() {
-  const { favourites, removeFavourite } = useContext(FavouritesContext);
+  const { favourites, removeFavourite } = useContext(GlobalContext);
 
   return (
     <div className="app-container">
