@@ -40,20 +40,31 @@
 
 @media (max-width: 600px) {
     .apod-card {
-        padding: 12px;
+      margin: 16px 0;
+      padding: 12px;
+      width: 100%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
   
     .apod-title {
-        font-size: 1.5rem;
+      font-size: 1.4rem;
     }
-  
-    .apod-description {
-        font-size: 0.95rem;
-    }
-  
+
     .apod-image,
     .apod-video {
         border-radius: 8px;
+    }
+  
+    .apod-description {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+  
+    .favourite-button,
+    .favourite-button.delete-button {
+      width: 100%;
+      font-size: 1.1rem;
+      padding: 12px;
     }
 }
   
