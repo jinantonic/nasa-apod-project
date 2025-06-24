@@ -33,13 +33,29 @@ export function GlobalProvider({ children }) {
     localStorage.setItem('favourites', JSON.stringify(updated));
   };
 
+  // 🕓 검색 히스토리
+  const [history, setHistory] = useState(() => {
+    const stored = localStorage.getItem('history');
+    return stored ? JSON.parse(stored) : [];
+  });
+
+  const addToHistory = (date) => {
+    if (!date) return;
+    if (history[0] === date) return;
+    const updated = [date, ...history.filter(d => d !== date)].slice(0, 10); // 최대 10개 유지
+    setHistory(updated);
+    localStorage.setItem('history', JSON.stringify(updated));
+  };
+
   return (
     <GlobalContext.Provider value={{
       darkMode,
       toggleDarkMode,
       favourites,
       addFavourite,
-      removeFavourite
+      removeFavourite,
+      history,
+      addToHistory
     }}>
       {children}
     </GlobalContext.Provider>

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { GlobalProvider } from './context/GlobalContext';  // 수정
+import { GlobalProvider } from './contexts/GlobalContext';  // 수정
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -2,16 +2,20 @@ import React, { useState, useEffect, useContext } from 'react';
 import DatePicker from '../components/DatePicker';
 import APODCard from '../components/APODCard';
 import Loading from '../components/Loading';
-import { GlobalContext } from '../context/GlobalContext';  // FavouritesContext → GlobalContext로 변경
+import { useSearchParams } from 'react-router-dom';
+import { GlobalContext } from '../contexts/GlobalContext'; 
 
 function Home() {
+  const [searchParams] = useSearchParams();
+  const urlDate = searchParams.get('date');
   const today = new Date().toISOString().split("T")[0];
-  const minDate = '1995-06-16';  // APOD 최초 날짜
-  const [selectedDate, setSelectedDate] = useState(today);
+  const minDate = '1995-06-16';
+  const [selectedDate, setSelectedDate] = useState(urlDate || today);
   const [apodData, setApodData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { favourites, addFavourite } = useContext(GlobalContext);
+
+  const { favourites, addFavourite, addToHistory } = useContext(GlobalContext);  // ✅ addToHistory 추가
 
   useEffect(() => {
     if (!selectedDate) return;
@@ -38,6 +42,8 @@ function Home() {
         if (!res.ok) throw new Error('Failed to fetch');
         const data = await res.json();
         setApodData(data);
+
+        addToHistory(selectedDate);  // ✅ 성공 시 history에 추가
       } catch (err) {
         setError(err.message);
       } finally {
@@ -46,7 +52,7 @@ function Home() {
     };
 
     fetchData();
-  }, [selectedDate, today]);
+  }, [selectedDate, today, addToHistory]);
 
   const handleAddFavourite = (item) => {
     if (favourites.some(fav => fav.date === item.date)) {

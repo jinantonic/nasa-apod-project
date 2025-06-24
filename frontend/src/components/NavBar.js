@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import './NavBar.css';
-import { GlobalContext } from '../context/GlobalContext';  // ThemeContext → GlobalContext로 변경
+import { GlobalContext } from '../contexts/GlobalContext';  // ThemeContext → GlobalContext로 변경
 
 function NavBar() {
   const { darkMode, toggleDarkMode } = useContext(GlobalContext);
@@ -14,6 +14,9 @@ function NavBar() {
         </NavLink>
         <NavLink to="/favourites" className="nav-link">
           Favourites
+        </NavLink>
+        <NavLink to="/history" className="nav-link">
+          History
         </NavLink>
       </div>
       <div className="nav-right">
