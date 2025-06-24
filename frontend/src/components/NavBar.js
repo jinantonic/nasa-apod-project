@@ -8,7 +8,7 @@ function NavBar() {
 
   return (
     <nav className="navbar">
-      <div>
+      <div className="nav-left">
         <NavLink to="/" className="nav-link" end>
           Home
         </NavLink>
@@ -16,12 +16,14 @@ function NavBar() {
           Favourites
         </NavLink>
       </div>
-      <div className="toggle-container">
+      <div className="nav-right">
         <label className="switch">
           <input type="checkbox" checked={darkMode} onChange={toggleDarkMode} />
           <span className="slider"></span>
         </label>
-        <span className="toggle-label">{darkMode ? '🌙 Dark Mode' : '☀️ Light Mode'}</span>
+        <span className="toggle-label">
+          {darkMode ? '🌙 Dark Mode' : '☀️ Light Mode'}
+        </span>
       </div>
     </nav>
   );
