@@ -62,7 +62,7 @@ export function GlobalProvider({ children }) {
       removeFavourite,
       history,
       addToHistory,
-      removeFromHistory // ✅ 추가됨!
+      removeFromHistory
     }}>
       {children}
     </GlobalContext.Provider>

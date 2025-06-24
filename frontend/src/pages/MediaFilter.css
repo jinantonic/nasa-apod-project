@@ -1,0 +1,92 @@
+.app-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+}
+  
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+  
+.filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.filter-controls label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fbfbfb;
+  min-width: 120px;
+}
+
+.filter-controls select,
+.filter-controls input[type="date"],
+.filter-controls button {
+  padding: 8px;
+  margin: 10px;
+  font-size: 1rem;
+  /* margin: 10px 0; */
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 140px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark .filter-controls select,
+.dark .filter-controls input[type="date"] {
+  background-color: #2b2b2b;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.filter-controls button {
+  /* padding: 10px 16px; */
+  /* font-size: 1rem;
+  font-weight: 500; */
+  background-color: #0a84ff;
+  color: white;
+  border: none;
+  box-sizing: border-box;
+  line-height: 1.5;
+  /* border-radius: 6px; */
+  cursor: pointer;
+  /* width: 140px;
+  margin: 10px;
+  transition: background-color 0.3s;
+  align-self: flex-end; */
+}
+
+.filter-controls button:hover {
+  background-color: #0066cc;
+}
+
+.results-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+.result-card-wrapper {
+  flex: 1 1 420px;
+  max-width: 500px;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-radius: 10px;
+  padding: 12px;
+  box-sizing: border-box;
+}
