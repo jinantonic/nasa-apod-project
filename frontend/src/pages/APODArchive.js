@@ -234,12 +234,12 @@ function MediaFilter() {
         </label>
 
         <label>
-          <span>Search</span>
+          <span style={{ visibility: 'hidden' }}>Search</span>
           <button onClick={handleSearch} disabled={dateRangeTooLong}>Search</button>
         </label>
 
         <label>
-          <span>Clear</span>
+          <span style={{ visibility: 'hidden' }}>Clear</span>
           <button onClick={handleClear} className="clear-button">Clear</button>
         </label>
       </div>
@@ -286,7 +286,7 @@ function MediaFilter() {
                 left: popupPosition.left,
               }}
             >
-              <p><strong>{selectedDate}</strong></p>
+              <p style={{ margin: '0 0 4px' }}><strong>{selectedDate}</strong></p>
               <button onClick={() => applyDate('start')}>Add to Start Date</button>
               <button onClick={() => applyDate('end')}>Add to End Date</button>
             </div>
