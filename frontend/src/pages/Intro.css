@@ -1,0 +1,202 @@
+/* 2. 우주 배경 */
+/* .space-scene {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  overflow: hidden;
+  z-index: -1;
+} */
+
+/* 3. Intro 페이지 텍스트 배치 */
+.intro-page {
+  position: relative;
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+  background-color: transparent; /* ✅ 투명 */
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 0; /* ✅ 낮게 설정 */
+}
+
+.space-scene {
+  position: fixed; /* 절대 위치 대신 fixed로 변경 */
+  top: 30px; /* 상단 여백 추가 */
+  left: 0;
+  width: 100vw;  /* 뷰포트 전체 너비 */
+  height: 100vh; /* 뷰포트 전체 높이 */
+  background-color: black;
+  overflow: hidden;
+  z-index: -1; /* 뒤로 */
+}
+
+
+/* 4. 태양 */
+.sun {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, #ffcc00 0%, #ff9900 80%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 50px 15px #ffcc00;
+  z-index: 10;
+}
+
+/* 5. 궤도 기본 설정 */
+.orbit {
+  position: absolute;
+  border: 1.5px solid;
+  border-radius: 50%;
+  box-sizing: border-box;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+  animation: orbit-spin linear infinite;
+}
+
+/* 6. 궤도 각각 설정 */
+.orbit1 {
+  width: 25vmin; height: 25vmin;
+  margin: -12.5vmin 0 0 -12.5vmin;
+  animation-duration: 8s;
+}
+
+.orbit2 {
+  width: 35vmin; height: 35vmin;
+  margin: -17.5vmin 0 0 -17.5vmin;
+  animation-duration: 12s;
+}
+
+.orbit3 {
+  width: 45vmin; height: 45vmin;
+  margin: -22.5vmin 0 0 -22.5vmin;
+  animation-duration: 16s;
+}
+
+.orbit4 {
+  width: 55vmin; height: 55vmin;
+  margin: -27.5vmin 0 0 -27.5vmin;
+  animation-duration: 20s;
+}
+
+.orbit5 {
+  width: 65vmin; height: 65vmin;
+  margin: -32.5vmin 0 0 -32.5vmin;
+  animation-duration: 24s;
+}
+
+.orbit6 {
+  width: 75vmin; height: 75vmin;
+  margin: -37.5vmin 0 0 -37.5vmin;
+  animation-duration: 28s;
+}
+
+.orbit7 {
+  width: 85vmin; height: 85vmin;
+  margin: -42.5vmin 0 0 -42.5vmin;
+  animation-duration: 32s;
+}
+
+/* 7. 행성 */
+.planet {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 20px;
+  height: 20px;
+  /* background-color: currentColor; */
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 8px 3px currentColor;
+  z-index: 11;
+}
+
+/* 8. 별들 */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 2px white);
+  animation: twinkle 3s infinite alternate;
+  z-index: 0;
+}
+
+/* 9. 은하수 */
+.milky-way {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90vmin;
+  height: 90vmin;
+  margin: -45vmin 0 0 -45vmin;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  box-shadow:
+    0 0 50px 30px rgba(255, 255, 255, 0.2),
+    inset 0 0 80px 40px rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  filter: blur(6px);
+  animation: milkyWayFlow 15s linear infinite;
+  z-index: 0;
+}
+
+/* 10. 텍스트 */
+.intro-text h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.intro-text p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.tagline {
+  margin-top: 1rem;
+  font-style: italic;
+  color: #ccc;
+}
+
+/* 11. 애니메이션 */
+@keyframes orbit-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+@keyframes milkyWayFlow {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate(10px, -10px) rotate(3deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.9;
+  }
+}

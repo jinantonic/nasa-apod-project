@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Intro from './pages/Intro';
+import SpaceBackground from './components/SpaceBackground';
 import Home from './pages/Home';
 import MediaFilter from './pages/MediaFilter';
 import Favourites from './pages/Favourites';
