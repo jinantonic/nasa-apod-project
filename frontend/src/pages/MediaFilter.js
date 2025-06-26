@@ -1,8 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import APODCard from '../components/APODCard';
+import { GlobalContext } from '../contexts/GlobalContext';
+
 import './MediaFilter.css';
 
 function MediaFilter() {
+  const { favourites, addFavourite } = useContext(GlobalContext);
+
   const [mediaType, setMediaType] = useState('all');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -283,9 +287,21 @@ function MediaFilter() {
         {results.length === 0 && !loading && !error && hasSearched && (
           <p className="no-results">No results to show. Please use the search above.</p>
         )}
+        
         {results.map(item => (
           <div key={item.date} className="result-card-wrapper">
-            <APODCard data={item} />
+            <APODCard
+              data={item}
+              showAddButton={!favourites.some(fav => fav.date === item.date)}
+              onAdd={() => {
+                if (favourites.some(fav => fav.date === item.date)) {
+                  alert("This item is already in your favourites!");
+                  return;
+                }
+                addFavourite(item);
+                alert("Added to favourites!");
+              }}
+            />
           </div>
         ))}
       </div>
