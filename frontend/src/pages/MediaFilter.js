@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import APODCard from '../components/APODCard';
 import './MediaFilter.css';
 
@@ -10,9 +10,14 @@ function MediaFilter() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [hasSearched, setHasSearched] = useState(false);
+
   const [videoDatesWithTitles, setVideoDatesWithTitles] = useState([]);
   const [showVideoDates, setShowVideoDates] = useState(false);
   const [loadingVideoTitles, setLoadingVideoTitles] = useState(false);
+
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
+  const popupRef = useRef(null);
 
   const minDate = '1995-06-16';
   const maxDate = new Date().toISOString().split('T')[0];
@@ -21,7 +26,6 @@ function MediaFilter() {
     '2022-06-21', '2023-03-11', '2024-05-09',
   ];
 
-  // Sample video titles fetch with loading state
   useEffect(() => {
     const fetchTitles = async () => {
       setLoadingVideoTitles(true);
@@ -106,6 +110,40 @@ function MediaFilter() {
     }
   };
 
+  const handleDateClick = (event, date) => {
+    const rect = event.target.getBoundingClientRect();
+    setPopupPosition({
+      top: rect.bottom + window.scrollY + 4,
+      left: rect.left + window.scrollX,
+    });
+    setSelectedDate(date);
+  };
+
+  const applyDate = (type) => {
+    if (type === 'start') {
+      setStartDate(selectedDate);
+    } else {
+      setEndDate(selectedDate);
+    }
+    setSelectedDate(null);
+    handleSearch();
+  };
+
+  // 팝업 외부 클릭 시 닫기
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (popupRef.current && !popupRef.current.contains(e.target)) {
+        setSelectedDate(null);
+      }
+    };
+    if (selectedDate) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [selectedDate]);
+
   return (
     <div className="app-container">
       <h1>🎞️ Media Filter</h1>
@@ -148,24 +186,16 @@ function MediaFilter() {
         </label>
       </div>
 
-      <div
-        className="video-dates-toggle"
-        style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}
-      >
+      <div className="video-dates-toggle" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
         <button onClick={() => setShowVideoDates(prev => !prev)}>
           {showVideoDates ? '⬆️ Hide Sample Video Dates' : '⬇️ Show Sample Video Dates'}
         </button>
       </div>
 
-      {/* 부드러운 토글 애니메이션용 영역 */}
-      <div
-        className={`video-dates-section ${showVideoDates ? 'open' : ''}`}
-        aria-hidden={!showVideoDates}
-      >
+      <div className={`video-dates-section ${showVideoDates ? 'open' : ''}`} aria-hidden={!showVideoDates}>
         <div className="video-dates-content">
           <p>
-            These dates include <strong>video content</strong> from NASA's APOD
-            archive. You can use them to test the media type filter.
+            These dates include <strong>video content</strong> from NASA's APOD archive.
           </p>
 
           {loadingVideoTitles ? (
@@ -177,11 +207,38 @@ function MediaFilter() {
           ) : (
             <ul>
               {videoDatesWithTitles.map(({ date, title }) => (
-                <li key={date}>
+                <li
+                  key={date}
+                  onClick={(e) => handleDateClick(e, date)}
+                  style={{ cursor: 'pointer' }}
+                >
                   <strong>{date}</strong>: {title}
                 </li>
               ))}
             </ul>
+          )}
+
+          {/* 🎯 팝업 UI 삽입 */}
+          {selectedDate && (
+            <div
+              ref={popupRef}
+              className="date-popup"
+              style={{
+                position: 'absolute',
+                top: popupPosition.top,
+                left: popupPosition.left,
+                background: 'white',
+                border: '1px solid #ccc',
+                borderRadius: '8px',
+                padding: '8px',
+                zIndex: 1000,
+                boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+              }}
+            >
+              <p style={{ margin: '0 0 4px' }}><strong>{selectedDate}</strong></p>
+              <button onClick={() => applyDate('start')}>Add to Start Date</button>
+              <button onClick={() => applyDate('end')}>Add to End Date</button>
+            </div>
           )}
         </div>
       </div>
@@ -198,7 +255,6 @@ function MediaFilter() {
         {results.length === 0 && !loading && !error && hasSearched && (
           <p className="no-results">No results to show. Please use the search above.</p>
         )}
-
         {results.map(item => (
           <div key={item.date} className="result-card-wrapper">
             <APODCard data={item} />
