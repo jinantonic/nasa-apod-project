@@ -170,6 +170,15 @@ function MediaFilter() {
     };
   }, [selectedDate]);
 
+  const handleAddFavourite = (item) => {
+    if (favourites.some(fav => fav.date === item.date)) {
+      alert("This item is already in your favourites!");
+      return;
+    }
+    addFavourite(item);
+    alert("Added to favourites!");
+  };
+
   return (
     <div className="app-container">
       <h1>🎞️ Media Filter</h1>
@@ -288,22 +297,25 @@ function MediaFilter() {
           <p className="no-results">No results to show. Please use the search above.</p>
         )}
         
-        {results.map(item => (
-          <div key={item.date} className="result-card-wrapper">
-            <APODCard
-              data={item}
-              showAddButton={!favourites.some(fav => fav.date === item.date)}
-              onAdd={() => {
-                if (favourites.some(fav => fav.date === item.date)) {
-                  alert("This item is already in your favourites!");
-                  return;
-                }
-                addFavourite(item);
-                alert("Added to favourites!");
-              }}
-            />
-          </div>
-        ))}
+        {results.map(item => {
+          const isInFavourites = favourites.some(fav => fav.date === item.date);
+          return (
+            <div key={item.date} className="result-card-wrapper">
+              <APODCard
+                data={item}
+                showAddButton={true}  // 항상 보이게
+                onAdd={() => {
+                  if (isInFavourites) {
+                    alert("This item is already in your favourites!");
+                    return;
+                  }
+                  addFavourite(item);
+                  alert("Added to favourites!");
+                }}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
