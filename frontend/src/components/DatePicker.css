@@ -17,4 +17,28 @@
     border: 1px solid #ccc;
     border-radius: 8px;
 }
-  
+
+.datepicker-input-group {
+  display: flex;
+  align-items: center;
+}
+
+.date-nav-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #444;
+  padding: 0 8px;
+  user-select: none;
+  transition: color 0.3s;
+}
+
+.date-nav-btn:disabled {
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.date-nav-btn:not(:disabled):hover {
+  color: #007bff;
+}

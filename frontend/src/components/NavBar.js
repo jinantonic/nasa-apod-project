@@ -16,7 +16,7 @@ function NavBar() {
           Home
         </NavLink>
         <NavLink to="/apodarchive" className="nav-link">
-          Media Filter
+          APOD Archive
         </NavLink>
         <NavLink to="/favourites" className="nav-link">
           Favourites

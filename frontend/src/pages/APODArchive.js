@@ -26,8 +26,8 @@ function MediaFilter() {
   const minDate = '1995-06-16';
   const maxDate = new Date().toISOString().split('T')[0];
   const videoDates = [
-    '2018-11-01', '2019-04-10', '2020-07-25', '2021-02-18',
-    '2022-06-21', '2023-03-11', '2024-05-09',
+    '2018-11-01', '2019-04-10', '2020-03-03', '2020-07-25', 
+    '2021-02-18', '2022-06-21', '2023-03-11', '2024-05-09',
   ];
 
   const getDateDiff = (start, end) => {
@@ -180,7 +180,7 @@ function MediaFilter() {
 
   return (
     <div className="app-container">
-      <h1>🎞️ Media Filter</h1>
+      <h1>🎞️ APOD Archive</h1>
 
       <div className="filter-controls">
         <label>
