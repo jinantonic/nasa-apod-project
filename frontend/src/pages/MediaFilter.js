@@ -18,6 +18,7 @@ function MediaFilter() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [popupPosition, setPopupPosition] = useState({ top: 0, left: 0 });
   const popupRef = useRef(null);
+  const abortControllerRef = useRef(null);
 
   const minDate = '1995-06-16';
   const maxDate = new Date().toISOString().split('T')[0];
@@ -25,6 +26,14 @@ function MediaFilter() {
     '2018-11-01', '2019-04-10', '2020-07-25', '2021-02-18',
     '2022-06-21', '2023-03-11', '2024-05-09',
   ];
+
+  const getDateDiff = (start, end) => {
+    const s = new Date(start);
+    const e = new Date(end);
+    return Math.ceil((e - s) / (1000 * 60 * 60 * 24));
+  };
+
+  const dateRangeTooLong = startDate && endDate && getDateDiff(startDate, endDate) > 30;
 
   useEffect(() => {
     const fetchTitles = async () => {
@@ -70,6 +79,18 @@ function MediaFilter() {
       setResults([]);
       return;
     }
+    if (getDateDiff(startDate, endDate) > 30) {
+      setError('Date range cannot exceed 30 days.');
+      setResults([]);
+      return;
+    }
+
+    // Abort previous request
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
 
     setLoading(true);
     setResults([]);
@@ -84,7 +105,9 @@ function MediaFilter() {
       }
 
       const fetches = dates.map(async (date) => {
-        const res = await fetch(`http://localhost:5001/apod?date=${date}`);
+        const res = await fetch(`http://localhost:5001/apod?date=${date}`, {
+          signal: controller.signal,
+        });
         if (!res.ok) throw new Error(`Failed to fetch data for ${date}`);
         const data = await res.json();
         return data.code === 404 ? null : data;
@@ -103,6 +126,7 @@ function MediaFilter() {
 
       setResults(dataList);
     } catch (err) {
+      if (err.name === 'AbortError') return;
       setError(err.message);
       setResults([]);
     } finally {
@@ -126,10 +150,8 @@ function MediaFilter() {
       setEndDate(selectedDate);
     }
     setSelectedDate(null);
-    handleSearch();
   };
 
-  // 팝업 외부 클릭 시 닫기
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (popupRef.current && !popupRef.current.contains(e.target)) {
@@ -163,7 +185,10 @@ function MediaFilter() {
           <input
             type="date"
             value={startDate}
-            onChange={e => setStartDate(e.target.value)}
+            onChange={(e) => {
+              setStartDate(e.target.value);
+              // e.target.blur();
+            }}
             min={minDate}
             max={maxDate}
           />
@@ -174,7 +199,10 @@ function MediaFilter() {
           <input
             type="date"
             value={endDate}
-            onChange={e => setEndDate(e.target.value)}
+            onChange={(e) => {
+              setEndDate(e.target.value);
+              e.target.blur();
+            }}
             min={minDate}
             max={maxDate}
           />
@@ -182,16 +210,21 @@ function MediaFilter() {
 
         <label className="search-button-label">
           <span style={{ visibility: 'hidden' }}>Search</span>
-          <button onClick={handleSearch}>Search</button>
+          <button onClick={handleSearch} disabled={dateRangeTooLong}>Search</button>
         </label>
       </div>
+
+      {dateRangeTooLong && (
+        <div style={{ marginBottom: '0.5rem', color: 'orange', fontWeight: 'bold' }}>
+          ⚠️ Please limit your search to a maximum of 30 days.
+        </div>
+      )}
 
       <div className="video-dates-toggle" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
         <button onClick={() => setShowVideoDates(prev => !prev)}>
           {showVideoDates ? '⬆️ Hide Sample Video Dates' : '⬇️ Show Sample Video Dates'}
         </button>
       </div>
-
       <div className={`video-dates-section ${showVideoDates ? 'open' : ''}`} aria-hidden={!showVideoDates}>
         <div className="video-dates-content">
           <p>
@@ -207,18 +240,13 @@ function MediaFilter() {
           ) : (
             <ul>
               {videoDatesWithTitles.map(({ date, title }) => (
-                <li
-                  key={date}
-                  onClick={(e) => handleDateClick(e, date)}
-                  style={{ cursor: 'pointer' }}
-                >
-                  <strong>{date}</strong>: {title}
+                <li key={date}>
+                  <strong onClick={(e) => handleDateClick(e, date)}>{date}</strong>: {title}
                 </li>
               ))}
             </ul>
           )}
 
-          {/* 🎯 팝업 UI 삽입 */}
           {selectedDate && (
             <div
               ref={popupRef}
