@@ -50,6 +50,10 @@ h1 {
   border: 1px solid #444;
 }
 
+.filter-controls span {
+  visibility: hidden;
+}
+
 .filter-controls button {
   background-color: #0a84ff;
   color: white;
@@ -71,13 +75,6 @@ h1 {
   background-color: #c62828; /* 더 진한 빨간 hover 효과 */
 }
 
-
-/* 혹시 Clear 버튼에 별도 클래스 추가하면 스타일 별도 지정 가능 */
-/* .clear-button {
-  background-color: #ccc;
-  color: #333;
-} */
-
 .result-card-wrapper {
   flex: 1 1 420px;
   max-width: 500px;
@@ -94,6 +91,9 @@ h1 {
 .video-dates-toggle {
   margin: 1rem 0;
   text-align: center;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
 .video-dates-toggle button {
@@ -202,6 +202,20 @@ h1 {
   50% { opacity: 0.4; }
 }
 
+.date-popup {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.date-popup p {
+  margin: 0 0 4px;
+}
+
 .date-popup button {
   display: block;
   width: 100%;
@@ -215,4 +229,12 @@ h1 {
 }
 .date-popup button:hover {
   background-color: #0066cc;
+}
+
+
+/* CSS from JS file --- Move back to JS if it doesn't work */
+.warning-text {
+  margin-bottom: 0.5rem;
+  color: orange;
+  font-weight: bold;
 }

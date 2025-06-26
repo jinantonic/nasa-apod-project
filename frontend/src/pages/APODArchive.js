@@ -234,23 +234,23 @@ function MediaFilter() {
         </label>
 
         <label>
-          <span style={{ visibility: 'hidden' }}>Search</span>
+          <span>Search</span>
           <button onClick={handleSearch} disabled={dateRangeTooLong}>Search</button>
         </label>
 
         <label>
-          <span style={{ visibility: 'hidden' }}>Clear</span>
+          <span>Clear</span>
           <button onClick={handleClear} className="clear-button">Clear</button>
         </label>
       </div>
 
       {dateRangeTooLong && (
-        <div style={{ marginBottom: '0.5rem', color: 'orange', fontWeight: 'bold' }}>
-          ⚠️ Please limit your search to a maximum of 30 days.
+        <div className="warning-text">
+          ⚠️ Please limit your search to a maximum of 30 days ⚠️
         </div>
       )}
 
-      <div className="video-dates-toggle" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+      <div className="video-dates-toggle">
         <button onClick={() => setShowVideoDates(prev => !prev)}>
           {showVideoDates ? '⬆️ Hide Sample Video Dates' : '⬇️ Show Sample Video Dates'}
         </button>
@@ -258,7 +258,7 @@ function MediaFilter() {
       <div className={`video-dates-section ${showVideoDates ? 'open' : ''}`} aria-hidden={!showVideoDates}>
         <div className="video-dates-content">
           <p>
-            These dates include <strong>video content</strong> from NASA's APOD archive.
+            These dates include <strong>video content</strong> examples from NASA's APOD archive.
           </p>
 
           {loadingVideoTitles ? (
@@ -282,18 +282,11 @@ function MediaFilter() {
               ref={popupRef}
               className="date-popup"
               style={{
-                position: 'absolute',
                 top: popupPosition.top,
                 left: popupPosition.left,
-                background: 'white',
-                border: '1px solid #ccc',
-                borderRadius: '8px',
-                padding: '8px',
-                zIndex: 1000,
-                boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
               }}
             >
-              <p style={{ margin: '0 0 4px' }}><strong>{selectedDate}</strong></p>
+              <p><strong>{selectedDate}</strong></p>
               <button onClick={() => applyDate('start')}>Add to Start Date</button>
               <button onClick={() => applyDate('end')}>Add to End Date</button>
             </div>
