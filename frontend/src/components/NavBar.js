@@ -10,6 +10,9 @@ function NavBar() {
     <nav className="navbar">
       <div className="nav-left">
         <NavLink to="/" className="nav-link" end>
+          Intro
+        </NavLink>
+        <NavLink to="/home" className="nav-link" end>
           Home
         </NavLink>
         <NavLink to="/mediafilter" className="nav-link">

@@ -214,7 +214,7 @@ function MediaFilter() {
             value={endDate}
             onChange={(e) => {
               setEndDate(e.target.value);
-              e.target.blur();
+              // e.target.blur();
             }}
             min={minDate}
             max={maxDate}
