@@ -15,7 +15,7 @@ function NavBar() {
         <NavLink to="/home" className="nav-link" end>
           Home
         </NavLink>
-        <NavLink to="/mediafilter" className="nav-link">
+        <NavLink to="/apodarchive" className="nav-link">
           Media Filter
         </NavLink>
         <NavLink to="/favourites" className="nav-link">

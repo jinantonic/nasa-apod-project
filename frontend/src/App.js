@@ -4,7 +4,7 @@ import NavBar from './components/NavBar';
 import Intro from './pages/Intro';
 import SpaceBackground from './components/SpaceBackground';
 import Home from './pages/Home';
-import MediaFilter from './pages/MediaFilter';
+import APODArchive from './pages/APODArchive';
 import Favourites from './pages/Favourites';
 import History from './pages/History';
 import { GlobalProvider, GlobalContext } from './contexts/GlobalContext';
@@ -21,7 +21,7 @@ function AppContent() {
           <Routes>
             <Route path="/" element={<Intro />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/mediafilter" element={<MediaFilter />} />
+            <Route path="/apodarchive" element={<APODArchive />} />
             <Route path="/favourites" element={<Favourites />} />
             <Route path="/history" element={<History />} />
           </Routes>

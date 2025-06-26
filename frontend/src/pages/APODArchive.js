@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import APODCard from '../components/APODCard';
 import { GlobalContext } from '../contexts/GlobalContext';
-
-import './MediaFilter.css';
+import './APODArchive.css';
 
 function MediaFilter() {
   const { favourites, addFavourite } = useContext(GlobalContext);
