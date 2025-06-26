@@ -124,7 +124,13 @@ function MediaFilter() {
       }
 
       if (dataList.length === 0) {
-        setError('No data available for this date.');
+        if (mediaType === 'image') {
+          setError('No image content available in this date range.');
+        } else if (mediaType === 'video') {
+          setError('No video content available in this date range.');
+        } else {
+          setError('No data available for this date range.');
+        }
       }
 
       setResults(dataList);
