@@ -19,40 +19,47 @@ function Home() {
 
   useEffect(() => {
     if (!selectedDate) return;
-
+  
     if (selectedDate > today) {
       setApodData(null);
       setError("You cannot select a future date.");
       setLoading(false);
       return;
     }
-
+  
     if (selectedDate < minDate) {
       setApodData(null);
       setError(`Date cannot be earlier than ${minDate}.`);
       setLoading(false);
       return;
     }
-
+  
     const fetchData = async () => {
       setLoading(true);
       setError(null);
       try {
         const res = await fetch(`http://localhost:5001/apod?date=${selectedDate}`);
         if (!res.ok) throw new Error('Failed to fetch');
+  
         const data = await res.json();
+  
+        if (data.code === 404) {
+          throw new Error(data.msg || 'No data available for this date.');
+        }
+  
         setApodData(data);
-
-        addToHistory(selectedDate);  // ✅ 성공 시 history에 추가
+        addToHistory(selectedDate);
       } catch (err) {
+        setApodData(null);
         setError(err.message);
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchData();
   }, [selectedDate, today, addToHistory]);
+  
 
   const handleAddFavourite = (item) => {
     if (favourites.some(fav => fav.date === item.date)) {
@@ -76,7 +83,12 @@ function Home() {
       />
 
       {loading && <Loading />}
-      {error && <p className="error">Error: {error}</p>}
+      {error && (
+        <div className="error-card">
+          <h2>⚠️ WARNING ⚠️</h2>
+          <p>{error}</p>
+        </div>
+      )}
 
       {apodData && !loading && !error && (
         <APODCard

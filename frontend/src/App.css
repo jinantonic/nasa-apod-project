@@ -114,6 +114,18 @@ p {
   box-shadow: 0 2px 8px rgba(255, 77, 79, 0.2);
 }
 
+.error-card {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 20px auto;
+  max-width: 600px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
 /* APOD 카드 스타일 */
 .apod-card {
   background: #ffffff;
