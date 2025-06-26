@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import APODCard from '../components/APODCard';
 import './MediaFilter.css';
 
@@ -10,9 +10,37 @@ function MediaFilter() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [hasSearched, setHasSearched] = useState(false);
+  const [videoDatesWithTitles, setVideoDatesWithTitles] = useState([]);
+  const [showVideoDates, setShowVideoDates] = useState(false);
+  const [loadingVideoTitles, setLoadingVideoTitles] = useState(false);
 
   const minDate = '1995-06-16';
   const maxDate = new Date().toISOString().split('T')[0];
+  const videoDates = [
+    '2018-11-01', '2019-04-10', '2020-07-25', '2021-02-18',
+    '2022-06-21', '2023-03-11', '2024-05-09',
+  ];
+
+  // Sample video titles fetch with loading state
+  useEffect(() => {
+    const fetchTitles = async () => {
+      setLoadingVideoTitles(true);
+      try {
+        const fetches = videoDates.map(async (date) => {
+          const res = await fetch(`http://localhost:5001/apod?date=${date}`);
+          const data = await res.json();
+          return { date, title: data.title || '(no title)' };
+        });
+        const results = await Promise.all(fetches);
+        setVideoDatesWithTitles(results);
+      } catch (err) {
+        console.error('Failed to fetch video titles', err);
+      } finally {
+        setLoadingVideoTitles(false);
+      }
+    };
+    fetchTitles();
+  }, []);
 
   const handleSearch = async () => {
     setHasSearched(true);
@@ -53,21 +81,12 @@ function MediaFilter() {
 
       const fetches = dates.map(async (date) => {
         const res = await fetch(`http://localhost:5001/apod?date=${date}`);
-        if (!res.ok) {
-          // 네트워크 오류 등
-          throw new Error(`Failed to fetch data for ${date}`);
-        }
+        if (!res.ok) throw new Error(`Failed to fetch data for ${date}`);
         const data = await res.json();
-  
-        if (data.code === 404) {
-          // 404는 해당 날짜에 데이터 없음, 그냥 null 반환해서 필터링 처리
-          return null;
-        }
-        return data;
+        return data.code === 404 ? null : data;
       });
 
       let dataList = await Promise.all(fetches);
-
       dataList = dataList.filter(item => item !== null);
 
       if (mediaType !== 'all') {
@@ -127,6 +146,44 @@ function MediaFilter() {
           <span style={{ visibility: 'hidden' }}>Search</span>
           <button onClick={handleSearch}>Search</button>
         </label>
+      </div>
+
+      <div
+        className="video-dates-toggle"
+        style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}
+      >
+        <button onClick={() => setShowVideoDates(prev => !prev)}>
+          {showVideoDates ? '⬆️ Hide Sample Video Dates' : '⬇️ Show Sample Video Dates'}
+        </button>
+      </div>
+
+      {/* 부드러운 토글 애니메이션용 영역 */}
+      <div
+        className={`video-dates-section ${showVideoDates ? 'open' : ''}`}
+        aria-hidden={!showVideoDates}
+      >
+        <div className="video-dates-content">
+          <p>
+            These dates include <strong>video content</strong> from NASA's APOD
+            archive. You can use them to test the media type filter.
+          </p>
+
+          {loadingVideoTitles ? (
+            <ul className="skeleton-list">
+              {videoDates.map((date) => (
+                <li key={date} className="skeleton-item" />
+              ))}
+            </ul>
+          ) : (
+            <ul>
+              {videoDatesWithTitles.map(({ date, title }) => (
+                <li key={date}>
+                  <strong>{date}</strong>: {title}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
 
       {loading && <p>Loading...</p>}
