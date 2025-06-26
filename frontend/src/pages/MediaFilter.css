@@ -90,3 +90,11 @@ h1 {
   padding: 12px;
   box-sizing: border-box;
 }
+
+.no-results {
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  margin-top: 40px;
+}
+
