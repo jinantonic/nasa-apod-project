@@ -18,6 +18,10 @@ function History() {
     <div className="history-container">
       <h1>🕓 Recently Viewed</h1>
 
+      <p className="history-info">
+        히스토리에 기록되는 날짜는 HOME 페이지에서 사용자가 직접 클릭하거나 상세 페이지에서 본 날짜입니다.
+      </p>
+
       <div className="sort-buttons">
         <button
           className={sortOrder === 'recent' ? 'active' : ''}
@@ -34,7 +38,7 @@ function History() {
       </div>
 
       {sortedHistory.length === 0 ? (
-        <p>No recently viewed items.</p>
+        <p>아직 본 날짜가 없습니다. 관심 있는 날짜를 클릭해 탐색해 보세요!</p>
       ) : (
         <ul className="history-list">
           {sortedHistory.map(date => (
