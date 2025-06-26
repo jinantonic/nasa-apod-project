@@ -184,6 +184,15 @@ function MediaFilter() {
     alert("Added to favourites!");
   };
 
+  const handleClear = () => {
+    setStartDate('');
+    setEndDate('');
+    setMediaType('all');
+    setResults([]);
+    setError(null);
+    setHasSearched(false);
+  };
+
   return (
     <div className="app-container">
       <h1>🎞️ APOD Archive</h1>
@@ -205,7 +214,6 @@ function MediaFilter() {
             value={startDate}
             onChange={(e) => {
               setStartDate(e.target.value);
-              // e.target.blur();
             }}
             min={minDate}
             max={maxDate}
@@ -219,16 +227,20 @@ function MediaFilter() {
             value={endDate}
             onChange={(e) => {
               setEndDate(e.target.value);
-              // e.target.blur();
             }}
             min={minDate}
             max={maxDate}
           />
         </label>
 
-        <label className="search-button-label">
+        <label>
           <span style={{ visibility: 'hidden' }}>Search</span>
           <button onClick={handleSearch} disabled={dateRangeTooLong}>Search</button>
+        </label>
+
+        <label>
+          <span style={{ visibility: 'hidden' }}>Clear</span>
+          <button onClick={handleClear} className="clear-button">Clear</button>
         </label>
       </div>
 
