@@ -88,7 +88,7 @@ function Home() {
   };
 
   return (
-    <div className="app-container">
+    <div className="app-container home-page">
       <h1>🌌 NASA APOD Explorer</h1>
       <DatePicker 
         selectedDate={selectedDate} 

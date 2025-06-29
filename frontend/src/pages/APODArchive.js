@@ -5,6 +5,7 @@ import './APODArchive.css';
 import '../components/APODCard.css';
 
 function APODArchive() {
+  // Destructure global context values and functions
   const { favourites, addFavourite, showModal, modalMessage, showModalHandler, closeModal } = useContext(GlobalContext);
 
   const [mediaType, setMediaType] = useState('all');
@@ -15,6 +16,7 @@ function APODArchive() {
   const [error, setError] = useState(null);
   const [hasSearched, setHasSearched] = useState(false);
 
+  // States related to sample video dates and their titles
   const [videoDatesWithTitles, setVideoDatesWithTitles] = useState([]);
   const [showVideoDates, setShowVideoDates] = useState(false);
   const [loadingVideoTitles, setLoadingVideoTitles] = useState(false);
@@ -31,14 +33,17 @@ function APODArchive() {
     '2021-02-18', '2022-06-21', '2023-03-11', '2024-05-09',
   ];
 
+  // Helper function to calculate difference in days between two dates
   const getDateDiff = (start, end) => {
     const s = new Date(start);
     const e = new Date(end);
     return Math.ceil((e - s) / (1000 * 60 * 60 * 24));
   };
 
+  // Boolean flag to disable search if date range exceeds 30 days
   const dateRangeTooLong = startDate && endDate && getDateDiff(startDate, endDate) > 30;
 
+  // Fetch titles for sample video dates on component mount
   useEffect(() => {
     const fetchTitles = async () => {
       setLoadingVideoTitles(true);
@@ -59,6 +64,7 @@ function APODArchive() {
     fetchTitles();
   }, []);
 
+  // Handler for performing search with filters
   const handleSearch = async () => {
     setHasSearched(true);
     setError(null);
@@ -89,7 +95,7 @@ function APODArchive() {
       return;
     }
 
-    // Abort previous request
+    // Abort any ongoing fetch requests to prevent race conditions
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
     }
@@ -99,6 +105,7 @@ function APODArchive() {
     setLoading(true);
     setResults([]);
 
+    // Generate array of dates between startDate and endDate inclusive
     try {
       const dates = [];
       let current = new Date(startDate);
@@ -108,6 +115,7 @@ function APODArchive() {
         current.setDate(current.getDate() + 1);
       }
 
+      // Fetch APOD data for each date concurrently
       const fetches = dates.map(async (date) => {
         const res = await fetch(`http://localhost:5001/api/apod?date=${date}`, {
           signal: controller.signal,
@@ -126,14 +134,13 @@ function APODArchive() {
 
       if (dataList.length === 0) {
         if (mediaType === 'image') {
-          setError('No image content available in this date range.');
+          setError('No image content is available for the selected date range.');
         } else if (mediaType === 'video') {
-          setError('No video content available in this date range.');
+          setError('No video content is available for the selected date range.');
         } else {
-          setError('No data available for this date range.');
+          setError('No data is available for the selected date range.');
         }
       }
-
       setResults(dataList);
     } catch (err) {
       if (err.name === 'AbortError') return;
@@ -144,6 +151,7 @@ function APODArchive() {
     }
   };
 
+  // Show popup near clicked sample video date to allow assigning it as start or end date
   const handleDateClick = (event, date) => {
     const rect = event.target.getBoundingClientRect();
     setPopupPosition({
@@ -153,6 +161,7 @@ function APODArchive() {
     setSelectedDate(date);
   };
 
+  // Apply selected date from popup to start or end date input
   const applyDate = (type) => {
     if (type === 'start') {
       setStartDate(selectedDate);
@@ -162,6 +171,7 @@ function APODArchive() {
     setSelectedDate(null);
   };
 
+  // Close popup if clicking outside of it
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (popupRef.current && !popupRef.current.contains(e.target)) {
@@ -176,6 +186,7 @@ function APODArchive() {
     };
   }, [selectedDate]);
 
+  // Handle adding an APOD item to favourites -> Check for duplicates first and show modal if duplicate detected
   const handleAddFavourite = (item) => {
     if (favourites.some(fav => fav.date === item.date)) {
       showModalHandler({
@@ -191,6 +202,7 @@ function APODArchive() {
     addFavourite(item);
   };
 
+  // Reset all filters and results
   const handleClear = () => {
     setStartDate('');
     setEndDate('');
@@ -201,9 +213,8 @@ function APODArchive() {
   };
 
   return (
-    <div className="app-container">
+    <div className="app-container archive-page">
       <h1>🎞️ APOD Archive</h1>
-
       <div className="filter-controls">
         <label>
           Media Type
@@ -219,9 +230,7 @@ function APODArchive() {
           <input
             type="date"
             value={startDate}
-            onChange={(e) => {
-              setStartDate(e.target.value);
-            }}
+            onChange={(e) => { setStartDate(e.target.value); }}
             min={minDate}
             max={maxDate}
           />
@@ -232,9 +241,7 @@ function APODArchive() {
           <input
             type="date"
             value={endDate}
-            onChange={(e) => {
-              setEndDate(e.target.value);
-            }}
+            onChange={(e) => { setEndDate(e.target.value); }}
             min={minDate}
             max={maxDate}
           />
@@ -244,7 +251,6 @@ function APODArchive() {
           <span style={{ visibility: 'hidden' }}>Search</span>
           <button type="button" onClick={handleSearch} disabled={dateRangeTooLong}>Search</button>
         </label>
-
         <label>
           <span style={{ visibility: 'hidden' }}>Clear</span>
           <button type="button" onClick={handleClear} className="clear-button">Clear</button>
@@ -252,9 +258,7 @@ function APODArchive() {
       </div>
 
       {dateRangeTooLong && (
-        <div className="warning-text">
-          ⚠️ Please limit your search to a maximum of 30 days ⚠️
-        </div>
+        <div className="warning-text">⚠️ Please limit your search to a maximum of 30 days ⚠️</div>
       )}
 
       <div className="video-dates-toggle">
@@ -264,15 +268,11 @@ function APODArchive() {
       </div>
       <div className={`video-dates-section ${showVideoDates ? 'open' : ''}`} aria-hidden={!showVideoDates}>
         <div className="video-dates-content">
-          <p>
-            These dates include <strong>video content</strong> examples from NASA's APOD archive.
-          </p>
+          <p>These dates include some of the <strong>video content</strong> examples from NASA's APOD archive.</p>
 
           {loadingVideoTitles ? (
             <ul className="skeleton-list">
-              {videoDates.map((date) => (
-                <li key={date} className="skeleton-item" />
-              ))}
+              {videoDates.map((date) => ( <li key={date} className="skeleton-item" />))}
             </ul>
           ) : (
             <ul>
@@ -293,7 +293,7 @@ function APODArchive() {
                 left: popupPosition.left,
               }}
             >
-              <p style={{ margin: '0 0 4px' }}><strong>{selectedDate}</strong></p>
+              <p><strong>{selectedDate}</strong></p>
               <button type="button" onClick={() => applyDate('start')}>Add to Start Date</button>
               <button type="button" onClick={() => applyDate('end')}>Add to End Date</button>
             </div>
@@ -311,7 +311,7 @@ function APODArchive() {
 
       <div className="results-list">
         {results.length === 0 && !loading && !error && hasSearched && (
-          <p className="no-results">No results to show. Please use the search above.</p>
+          <p className="no-results">No results to display. Please use the search above to find content.</p>
         )}
         
         {results.map(item => {
@@ -319,7 +319,7 @@ function APODArchive() {
             <div key={item.date} className="result-card-wrapper">
               <APODCard
                 data={item}
-                showAddButton={true}  // 항상 보이게
+                showAddButton={true} 
                 onAdd={() => handleAddFavourite(item)}
               />
             </div>
@@ -327,13 +327,12 @@ function APODArchive() {
         })}
       </div>
 
-      {/* 모달 출력 */}
       {showModal && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
             <h2>{modalMessage.title}</h2>
             <p>{modalMessage.message}</p>
-            <button onClick={closeModal}>닫기</button>
+            <button onClick={closeModal}>Close</button>
           </div>
         </div>
       )}

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './APODCard.css';
 
 function APODCard({ data, showAddButton = true, onAdd, onError, showDeleteButton = false, onDelete }) {
@@ -54,23 +55,27 @@ function APODCard({ data, showAddButton = true, onAdd, onError, showDeleteButton
   return (
     <>
       <div className="apod-card" role="region" aria-label={`APOD: ${data.title}`}>
-        <h2 className="apod-title">{data.title}</h2>
-        <p className="apod-date">{data.date}</p>
-        <div className="apod-media">
-          {data.media_type === 'image' ? (
-            <img src={data.url} alt={data.title} className="apod-image" />
-          ) : (
-            <iframe
-              title={data.title}
-              src={data.url}
-              frameBorder="0"
-              allowFullScreen
-              className="apod-video"
-            />
-          )}
-        </div>
-        <p className="apod-description">{data.explanation}</p>
+        {/* 카드 본문 전체를 Link로 감싸서 클릭 시 홈 페이지로 이동 (date 쿼리 전달) */}
+        <Link to={`/home?date=${data.date}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
+          <h2 className="apod-title">{data.title}</h2>
+          <p className="apod-date">{data.date}</p>
+          <div className="apod-media">
+            {data.media_type === 'image' ? (
+              <img src={data.url} alt={data.title} className="apod-image" />
+            ) : (
+              <iframe
+                title={data.title}
+                src={data.url}
+                frameBorder="0"
+                allowFullScreen
+                className="apod-video"
+              />
+            )}
+          </div>
+          <p className="apod-description">{data.explanation}</p>
+        </Link>
 
+        {/* 버튼 그룹은 링크 외부에 위치 */}
         <div className="button-group">
           {showAddButton && (
             <button
