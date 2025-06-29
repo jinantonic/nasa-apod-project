@@ -72,15 +72,19 @@ h1 {
 }
 
 .result-card-wrapper {
-  flex: 1 1 420px;
-  max-width: 500px;
-  min-height: 500px;
+  /* flex: 1 1 420px;
+  max-width: 500px; */
+  /* min-height: 500px; */
   display: flex;
   flex-direction: column;
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   border-radius: 10px;
   padding: 12px;
+  box-sizing: border-box;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 24px; /* 세로 간격 */
   box-sizing: border-box;
 }
 
@@ -164,10 +168,13 @@ h1 {
 }
 
 .results-list {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 24px;
+  align-items: flex-start; */
+  column-count: 2; /* 2열 */
+  column-gap: 24px;
 }
 
 .no-results {
@@ -230,4 +237,11 @@ h1 {
   margin-bottom: 0.5rem;
   color: orange;
   font-weight: bold;
+}
+
+/* 모바일 뷰 (예: 768px 이하)에서 1열로 변경 */
+@media (max-width: 768px) {
+  .results-list {
+    column-count: 1;
+  }
 }
