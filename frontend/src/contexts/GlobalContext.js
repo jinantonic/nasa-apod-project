@@ -3,38 +3,40 @@ import React, { createContext, useState, useEffect } from 'react';
 export const GlobalContext = createContext();
 
 export function GlobalProvider({ children }) {
-  // 다크모드 상태
+  // Dark mode state, initialized from localStorage
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem('darkMode') === 'true';
   });
 
+  // Sync darkMode state to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('darkMode', darkMode);
   }, [darkMode]);
 
   const toggleDarkMode = () => setDarkMode(prev => !prev);
 
+  // Favorites state, initialized from localStorage
   const [favourites, setFavourites] = useState(() => {
     const stored = localStorage.getItem('favourites');
     return stored ? JSON.parse(stored) : [];
   });
 
-  // 모달 상태 (객체 형태로 title과 message 관리)
+  // Modal state (open/close and message)
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState({ title: '', message: '' });
 
-  // 모달 열기 함수 (객체 받음)
+  // Open modal with given title and message
   const showModalHandler = ({ title, message }) => {
     setModalMessage({ title, message });
     setShowModal(true);
   };
 
-  // 모달 닫기 함수
   const closeModal = () => {
     setShowModal(false);
     setModalMessage({ title: '', message: '' });
   };
 
+  // Add item to favorites
   const addFavourite = (item) => {
     if (favourites.find(fav => fav.date === item.date)) return;
     const updated = [...favourites, item];
@@ -42,7 +44,11 @@ export function GlobalProvider({ children }) {
     localStorage.setItem('favourites', JSON.stringify(updated));
     showModalHandler({
       title: '⭐ Favorites ⭐',
-      message: `"${item.title}"has been added to your favorites!`,
+      message: (
+          <>
+            <span style={{ fontWeight: 'bold', fontSize: '1.1em' }}>{item.title}</span> has been added your favorites!
+          </>
+        ),
     });
   };
 
@@ -52,7 +58,7 @@ export function GlobalProvider({ children }) {
     localStorage.setItem('favourites', JSON.stringify(updated));
   };
 
-  // 검색 히스토리 상태
+  // Search history state, initialized from localStorage
   const [history, setHistory] = useState(() => {
     const stored = localStorage.getItem('history');
     return stored ? JSON.parse(stored) : [];
