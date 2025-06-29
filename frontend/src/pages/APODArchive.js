@@ -64,6 +64,19 @@ function APODArchive() {
     fetchTitles();
   }, []);
 
+  const handleMediaTypeChange = (e) => {
+    setMediaType(e.target.value);
+  };
+
+  // 2) mediaType 변경 시 자동 검색 실행
+  useEffect(() => {
+    // startDate, endDate가 유효해야만 검색 실행하도록 조건 걸기
+    if (startDate && endDate) {
+      handleSearch();
+    }
+  }, [mediaType]);
+
+
   // Handler for performing search with filters
   const handleSearch = async () => {
     setHasSearched(true);
@@ -218,7 +231,7 @@ function APODArchive() {
       <div className="filter-controls">
         <label>
           Media Type
-          <select value={mediaType} onChange={e => setMediaType(e.target.value)}>
+          <select value={mediaType} onChange={handleMediaTypeChange}>
             <option value="all">All</option>
             <option value="image">Image</option>
             <option value="video">Video</option>
@@ -301,7 +314,15 @@ function APODArchive() {
         </div>
       </div>
 
-      {loading && <p>Loading...</p>}
+      {loading && (
+        <div className="spinner-overlay">
+          <div className="spinner-container">
+            <div className="spinner"></div>
+            <p className="loading-text">Loading...</p>
+          </div>
+        </div>
+      )}
+
       {error && (
         <div className="error-card">
           <h2>⚠️ WARNING ⚠️</h2>
@@ -310,10 +331,6 @@ function APODArchive() {
       )}
 
       <div className="results-list">
-        {results.length === 0 && !loading && !error && hasSearched && (
-          <p className="no-results">No results to display. Please use the search above to find content.</p>
-        )}
-        
         {results.map(item => {
           return (
             <div key={item.date} className="result-card-wrapper">
