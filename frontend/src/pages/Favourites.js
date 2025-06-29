@@ -5,13 +5,15 @@ import Modal from '../components/Modal';
 import './Favourites.css';
 
 function Favourites() {
+  // Access favourites list and removal function from global context
   const { favourites, removeFavourite } = useContext(GlobalContext);
 
+  // State for sorting option and modal control
   const [sortOption, setSortOption] = useState('latest');
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState({ title: '', message: '' });
 
-
+  // Sort favourites based on selected option
   const sortedFavourites = [...favourites].sort((a, b) => {
     switch (sortOption) {
       case 'latest':
@@ -25,6 +27,7 @@ function Favourites() {
     }
   });
 
+  // Handle removing favourite and show modal confirmation
   const handleDelete = (date, title) => {
     removeFavourite(date);
 

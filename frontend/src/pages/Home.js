@@ -20,17 +20,20 @@ function Home() {
 
   const { favourites, addFavourite, addToHistory, showModal, modalMessage, showModalHandler, closeModal } = useContext(GlobalContext);
 
+  // Sync URL date parameter to state
   useEffect(() => {
     if (urlDate && urlDate !== selectedDate) {
       setSelectedDate(urlDate);
     }
   }, [urlDate]);
 
+  // Change date and update URL
   const onDateChange = (newDate) => {
     setSelectedDate(newDate);
     navigate(`/home?date=${newDate}`, { replace: true });
   };
 
+  // Fetch APOD data whenever selectedDate changes
   useEffect(() => {
     if (!selectedDate) return;
 
@@ -53,6 +56,7 @@ function Home() {
       try {
         const res = await fetch(`http://localhost:5001/api/apod?date=${selectedDate}`);
         if (!res.ok) throw new Error('Failed to fetch');
+
         const data = await res.json();
         if (data.code === 404) throw new Error(data.msg || 'No data for this date.');
 
@@ -65,10 +69,10 @@ function Home() {
         setLoading(false);
       }
     };
-
     fetchData();
   }, [selectedDate, today, addToHistory]);
 
+  // Handle adding to favourites with duplicate check
   const handleAddFavourite = (item) => {
     const alreadyAdded = favourites.some(fav => fav.date === item.date);
 
@@ -83,7 +87,6 @@ function Home() {
       });
     } else {
       addFavourite(item);
-      // addFavourite 내부에서 모달 열기 때문에 여기선 별도 호출 불필요
     }
   };
 
@@ -97,7 +100,15 @@ function Home() {
         max={today} 
       />
 
-      {loading && <Loading />}
+      {loading && (
+        <div className="spinner-overlay">
+          <div className="spinner-container">
+            <div className="spinner"></div>
+            <p className="loading-text">Loading...</p>
+          </div>
+        </div>
+      )}
+      
       {error && (
         <div className="error-card">
           <h2>⚠️ WARNING ⚠️</h2>

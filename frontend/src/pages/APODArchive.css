@@ -157,7 +157,6 @@
   justify-content: center; /* Optional: 가운데 정렬 */
 }
 
-
 /* === Empty and Loading States === */
 .no-results {
   text-align: center;
@@ -219,16 +218,26 @@
 }
 
 .spinner-container {
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px; /* 스피너와 텍스트 사이 간격 */
+  gap: 5px; /* 스피너와 텍스트 사이 간격 */
+}
+
+.spinner {
+  width: 80px;
+  height: 80px;
 }
 
 .loading-text {
-  color: white;
+  color: blue;
   font-size: 1.2rem;
   font-weight: 600;
+}
+
+.dark .loading-text {
+  color: white;
 }
 
 /* === Warning Text Styling === */
@@ -242,5 +251,10 @@
 @media (max-width: 768px) {
   .results-list {
     column-count: 1;
+  }
+
+  .spinner {
+    width: 50px;
+    height: 50px;
   }
 }

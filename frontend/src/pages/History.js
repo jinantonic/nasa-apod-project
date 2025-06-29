@@ -17,9 +17,8 @@ function History() {
   return (
     <div className="app-container">
       <h1>🕓 Recently Viewed</h1>
-
       <p className="history-info">
-        히스토리에 기록되는 날짜는 HOME 페이지에서 사용자가 직접 클릭하거나 상세 페이지에서 본 날짜입니다.
+        The dates recorded in the history are those you clicked on directly from the HOME page or viewed on the detail page.
       </p>
 
       <div className="sort-buttons">
@@ -40,7 +39,7 @@ function History() {
       </div>
 
       {sortedHistory.length === 0 ? (
-        <p>아직 본 날짜가 없습니다. 관심 있는 날짜를 클릭해 탐색해 보세요!</p>
+        <p className="history-info">You haven't viewed any dates yet. Click on a date to explore and start your journey!</p>
       ) : (
         <ul className="history-list">
           {sortedHistory.map(date => (

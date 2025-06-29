@@ -33,17 +33,17 @@ function APODArchive() {
     '2021-02-18', '2022-06-21', '2023-03-11', '2024-05-09',
   ];
 
-  // Helper function to calculate difference in days between two dates
+  // Calculate difference in days between two dates
   const getDateDiff = (start, end) => {
     const s = new Date(start);
     const e = new Date(end);
     return Math.ceil((e - s) / (1000 * 60 * 60 * 24));
   };
 
-  // Boolean flag to disable search if date range exceeds 30 days
+  // Disable search if date range exceeds 30 days
   const dateRangeTooLong = startDate && endDate && getDateDiff(startDate, endDate) > 30;
 
-  // Fetch titles for sample video dates on component mount
+  // Fetch titles for sample video dates on mount
   useEffect(() => {
     const fetchTitles = async () => {
       setLoadingVideoTitles(true);
@@ -68,16 +68,14 @@ function APODArchive() {
     setMediaType(e.target.value);
   };
 
-  // 2) mediaType 변경 시 자동 검색 실행
+  // Auto search when mediaType changes and dates are set
   useEffect(() => {
-    // startDate, endDate가 유효해야만 검색 실행하도록 조건 걸기
     if (startDate && endDate) {
       handleSearch();
     }
   }, [mediaType]);
 
-
-  // Handler for performing search with filters
+  // Perform search with validation and data fetching
   const handleSearch = async () => {
     setHasSearched(true);
     setError(null);
@@ -108,7 +106,7 @@ function APODArchive() {
       return;
     }
 
-    // Abort any ongoing fetch requests to prevent race conditions
+    // Abort ongoing fetches to avoid race conditions
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
     }
@@ -128,7 +126,7 @@ function APODArchive() {
         current.setDate(current.getDate() + 1);
       }
 
-      // Fetch APOD data for each date concurrently
+      // Fetch APOD data concurrently for all dates
       const fetches = dates.map(async (date) => {
         const res = await fetch(`http://localhost:5001/api/apod?date=${date}`, {
           signal: controller.signal,
@@ -141,6 +139,7 @@ function APODArchive() {
       let dataList = await Promise.all(fetches);
       dataList = dataList.filter(item => item !== null);
 
+      // Filter results by media type if applicable
       if (mediaType !== 'all') {
         dataList = dataList.filter(item => item.media_type === mediaType);
       }
@@ -164,7 +163,7 @@ function APODArchive() {
     }
   };
 
-  // Show popup near clicked sample video date to allow assigning it as start or end date
+  // Show popup for selecting sample video date as start or end date
   const handleDateClick = (event, date) => {
     const rect = event.target.getBoundingClientRect();
     setPopupPosition({
@@ -174,7 +173,7 @@ function APODArchive() {
     setSelectedDate(date);
   };
 
-  // Apply selected date from popup to start or end date input
+  // Apply selected sample date to start or end date input
   const applyDate = (type) => {
     if (type === 'start') {
       setStartDate(selectedDate);
@@ -199,7 +198,7 @@ function APODArchive() {
     };
   }, [selectedDate]);
 
-  // Handle adding an APOD item to favourites -> Check for duplicates first and show modal if duplicate detected
+  // Add item to favourites if not already added, else show modal warning
   const handleAddFavourite = (item) => {
     if (favourites.some(fav => fav.date === item.date)) {
       showModalHandler({

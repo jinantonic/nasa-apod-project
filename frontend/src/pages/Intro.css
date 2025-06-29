@@ -59,37 +59,31 @@
   margin: -12.5vmin 0 0 -12.5vmin;
   animation-duration: 8s;
 }
-
 .orbit2 {
   width: 35vmin; height: 35vmin;
   margin: -17.5vmin 0 0 -17.5vmin;
   animation-duration: 12s;
 }
-
 .orbit3 {
   width: 45vmin; height: 45vmin;
   margin: -22.5vmin 0 0 -22.5vmin;
   animation-duration: 16s;
 }
-
 .orbit4 {
   width: 55vmin; height: 55vmin;
   margin: -27.5vmin 0 0 -27.5vmin;
   animation-duration: 20s;
 }
-
 .orbit5 {
   width: 65vmin; height: 65vmin;
   margin: -32.5vmin 0 0 -32.5vmin;
   animation-duration: 24s;
 }
-
 .orbit6 {
   width: 75vmin; height: 75vmin;
   margin: -37.5vmin 0 0 -37.5vmin;
   animation-duration: 28s;
 }
-
 .orbit7 {
   width: 85vmin; height: 85vmin;
   margin: -42.5vmin 0 0 -42.5vmin;
