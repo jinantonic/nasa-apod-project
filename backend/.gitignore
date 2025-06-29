@@ -1,5 +1,8 @@
-# Node.js dependencies folder (auto-generated, do not commit)
+# Node.js dependencies (auto-generated, do not commit)
 node_modules/
 
 # Environment variables file (contains sensitive info like API keys)
 .env
+
+# dotenv example file (safe to commit)
+.env.example

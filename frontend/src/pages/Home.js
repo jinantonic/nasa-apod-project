@@ -53,7 +53,7 @@ function Home() {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch(`http://localhost:5001/apod?date=${selectedDate}`);
+        const res = await fetch(`http://localhost:5001/api/apod?date=${selectedDate}`);
         if (!res.ok) throw new Error('Failed to fetch');
   
         const data = await res.json();

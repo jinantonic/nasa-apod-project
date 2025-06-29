@@ -44,7 +44,7 @@ function APODArchive() {
       setLoadingVideoTitles(true);
       try {
         const fetches = videoDates.map(async (date) => {
-          const res = await fetch(`http://localhost:5001/apod?date=${date}`);
+          const res = await fetch(`http://localhost:5001/api/apod?date=${date}`);
           const data = await res.json();
           return { date, title: data.title || '(no title)' };
         });
@@ -109,7 +109,7 @@ function APODArchive() {
       }
 
       const fetches = dates.map(async (date) => {
-        const res = await fetch(`http://localhost:5001/apod?date=${date}`, {
+        const res = await fetch(`http://localhost:5001/api/apod?date=${date}`, {
           signal: controller.signal,
         });
         if (!res.ok) throw new Error(`Failed to fetch data for ${date}`);
