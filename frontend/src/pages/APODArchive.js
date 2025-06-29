@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import APODCard from '../components/APODCard';
+import Loading from '../components/Loading';
 import { GlobalContext } from '../contexts/GlobalContext';
 import './APODArchive.css';
 import '../components/APODCard.css';
@@ -313,15 +314,7 @@ function APODArchive() {
         </div>
       </div>
 
-      {loading && (
-        <div className="spinner-overlay">
-          <div className="spinner-container">
-            <div className="spinner"></div>
-            <p className="loading-text">Loading...</p>
-          </div>
-        </div>
-      )}
-
+      {loading && <Loading />}
       {error && (
         <div className="error-card">
           <h2>⚠️ WARNING ⚠️</h2>

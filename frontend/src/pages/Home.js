@@ -100,15 +100,7 @@ function Home() {
         max={today} 
       />
 
-      {loading && (
-        <div className="spinner-overlay">
-          <div className="spinner-container">
-            <div className="spinner"></div>
-            <p className="loading-text">Loading...</p>
-          </div>
-        </div>
-      )}
-      
+      {loading && <Loading />}
       {error && (
         <div className="error-card">
           <h2>⚠️ WARNING ⚠️</h2>
@@ -130,7 +122,7 @@ function Home() {
           <div className="modal-content" onClick={e => e.stopPropagation()}>
             <h2>{modalMessage.title}</h2>
             <p>{modalMessage.message}</p>
-            <button onClick={closeModal}>닫기</button>
+            <button onClick={closeModal}>Close</button>
           </div>
         </div>
       )}
