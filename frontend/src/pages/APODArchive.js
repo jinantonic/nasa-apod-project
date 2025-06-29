@@ -341,7 +341,7 @@ function APODArchive() {
           <div className="modal-content" onClick={e => e.stopPropagation()}>
             <h2>{modalMessage.title}</h2>
             <p>{modalMessage.message}</p>
-            <button onClick={closeModal}>Close</button>
+            <button type="button" onClick={closeModal}>Close</button>
           </div>
         </div>
       )}

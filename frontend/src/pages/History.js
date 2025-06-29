@@ -51,6 +51,7 @@ function History() {
                 {date}
               </span>
               <button
+                type="button"
                 className="delete-button"
                 onClick={() => removeFromHistory(date)}
               >

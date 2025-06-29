@@ -70,13 +70,11 @@ function Home() {
       }
     };
     fetchData();
-  }, [selectedDate, today, addToHistory]);
+  }, [selectedDate, today]);
 
   // Handle adding to favourites with duplicate check
   const handleAddFavourite = (item) => {
-    const alreadyAdded = favourites.some(fav => fav.date === item.date);
-
-    if (alreadyAdded) {
+    if (favourites.some(fav => fav.date === item.date)) {
       showModalHandler({
         title: '⛔️ Dupliate Add ⛔️',
         message: (
@@ -85,9 +83,18 @@ function Home() {
           </>
         ),
       });
-    } else {
-      addFavourite(item);
+      return;
     }
+    addFavourite(item);
+
+    showModalHandler({
+      title: '✅ Added to Favorites',
+      message: (
+        <>
+          <span style={{ fontWeight: 'bold', fontSize: '1.1em' }}>{item.title}</span> was added to your favorites.
+        </>
+      ),
+    });
   };
 
   return (
@@ -122,7 +129,7 @@ function Home() {
           <div className="modal-content" onClick={e => e.stopPropagation()}>
             <h2>{modalMessage.title}</h2>
             <p>{modalMessage.message}</p>
-            <button onClick={closeModal}>Close</button>
+            <button type="button" onClick={closeModal}>Close</button>
           </div>
         </div>
       )}
