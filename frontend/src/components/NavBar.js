@@ -32,7 +32,7 @@ function NavBar() {
           <span className="slider"></span>
         </label>
         <span className="toggle-label">
-          {darkMode ? '🌙 Dark Mode' : '☀️ Light Mode'}
+          {darkMode ? <>Galaxy Mode&nbsp;&nbsp;&nbsp;&nbsp;🪐</> : <>Solar Mode&nbsp;&nbsp;&nbsp;&nbsp;☀️</>}
         </span>
       </div>
     </nav>

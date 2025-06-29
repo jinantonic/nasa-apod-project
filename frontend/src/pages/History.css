@@ -1,57 +1,57 @@
 .dark .history-info {
-    color: white;
+  color: white;
 }
 
 .history-info {
-    color: black;
+  color: black;
 }
 
 .history-list {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
   
 .history-item {
-    background-color: #fff;
-    color: #000;
-    padding: 8px 12px;
-    margin: 6px 0;
-    border-radius: 6px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background-color 0.3s ease;
+  background-color: #fff;
+  color: #000;
+  padding: 8px 12px;
+  margin: 6px 0;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
 }
   
 .history-item:hover {
-    background-color: #e0e7ff;
+  background-color: #e0e7ff;
 }
   
 .history-date {
-    cursor: pointer;
-    flex-grow: 1;
+  cursor: pointer;
+  flex-grow: 1;
 }
   
 .sort-buttons {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    font-size: 1rem;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  font-size: 1rem;
+  justify-content: center;
 }
   
 .sort-buttons button {
-    flex: 1;
-    padding: 10px 10px;
-    background-color: #ddd;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    max-width: 150px;
+  flex: 1;
+  padding: 10px 10px;
+  background-color: #ddd;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  max-width: 150px;
 }
   
 .sort-buttons button.active {
-    background-color: #333;
-    color: white;
+  background-color: #333;
+  color: white;
 }
   
