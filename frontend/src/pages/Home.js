@@ -2,14 +2,16 @@ import React, { useState, useEffect, useContext } from 'react';
 import DatePicker from '../components/DatePicker';
 import APODCard from '../components/APODCard';
 import Loading from '../components/Loading';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../contexts/GlobalContext'; 
 
 function Home() {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const urlDate = searchParams.get('date');
   const today = new Date().toISOString().split("T")[0];
   const minDate = '1995-06-16';
+
   const [selectedDate, setSelectedDate] = useState(urlDate || today);
   const [apodData, setApodData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -22,7 +24,13 @@ function Home() {
     if (urlDate && urlDate !== selectedDate) {
       setSelectedDate(urlDate);
     }
-  }, [urlDate, selectedDate]);
+  }, [urlDate]);
+
+  // selectedDate가 바뀔 때 URL 쿼리를 업데이트 (history.push 대신 navigate)
+  const onDateChange = (newDate) => {
+    setSelectedDate(newDate);
+    navigate(`/home?date=${newDate}`, { replace: true });
+  };
 
   useEffect(() => {
     if (!selectedDate) return;
@@ -84,7 +92,7 @@ function Home() {
       <h1>🌌 NASA APOD Explorer</h1>
       <DatePicker 
         selectedDate={selectedDate} 
-        onDateChange={setSelectedDate} 
+        onDateChange={onDateChange} 
         min={minDate} 
         max={today} 
       />
