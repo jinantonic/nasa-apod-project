@@ -32,7 +32,7 @@ function Intro() {
         </defs>
         <text className="orbit-text">
             <textPath href="#orbitPath" startOffset="0%">
-                🌌 Explore  NASA's  APOD:   Your Daily Dose of Stunning Space Images & Videos           🌠 Explore  NASA's  APOD:   Your Daily Dose of Stunning Space Images & Videos       
+                🌌  Explore  NASA's  APOD:   Your Daily Dose of Stunning Space Images & Videos          🌠  Explore  NASA's  APOD:   Your Daily Dose of Stunning Space Images & Videos       
             </textPath>
         </text>
       </svg>

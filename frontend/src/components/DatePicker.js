@@ -31,7 +31,7 @@ function DatePicker({ selectedDate, onDateChange, min, max }) {
           disabled={!canGoPrev}
           aria-label="Previous day"
         >
-          &#8592;
+          ◀
         </button>
 
         <input
@@ -50,7 +50,7 @@ function DatePicker({ selectedDate, onDateChange, min, max }) {
           disabled={!canGoNext}
           aria-label="Next day"
         >
-          &#8594;
+          ▶
         </button>
       </div>
     </div>
