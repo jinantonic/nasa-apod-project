@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import './APODCard.css';
 
 function APODCard({ data, showAddButton = true, onAdd, onError, showDeleteButton = false, onDelete }) {
-  // Tooltip visibility state for share button
+  // State for controlling tooltip visibility
   const [showShareTooltip, setShowShareTooltip] = useState(false);
   const tooltipRef = useRef(null);
 
-  // Construct share URL based on current location and APOD date
+  // Create share URL including date query parameter
   const shareUrl = window.location.origin + `/?date=${data.date}`;
 
   const handleAddClick = () => {
@@ -25,14 +25,14 @@ function APODCard({ data, showAddButton = true, onAdd, onError, showDeleteButton
       console.error('Failed to copy: ', err);
       if (onError) {
         onError({
-          title: 'Error',
+          title: '⚠️ Error ⚠️',
           message: 'Failed to copy the link.'
         });
       }
     }
   };
 
-  // Close tooltip if user clicks outside of it
+  // Close tooltip when clicking outside
   useEffect(() => {
     function handleClickOutside(event) {
       if (tooltipRef.current && !tooltipRef.current.contains(event.target)) {
@@ -55,7 +55,7 @@ function APODCard({ data, showAddButton = true, onAdd, onError, showDeleteButton
   return (
     <>
       <div className="apod-card" role="region" aria-label={`APOD: ${data.title}`}>
-        {/* 카드 본문 전체를 Link로 감싸서 클릭 시 홈 페이지로 이동 (date 쿼리 전달) */}
+        {/* Wrap entire card content in a Link with date query */}
         <Link to={`/home?date=${data.date}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
           <h2 className="apod-title">{data.title}</h2>
           <p className="apod-date">{data.date}</p>
@@ -75,7 +75,7 @@ function APODCard({ data, showAddButton = true, onAdd, onError, showDeleteButton
           <p className="apod-description">{data.explanation}</p>
         </Link>
 
-        {/* 버튼 그룹은 링크 외부에 위치 */}
+        {/* Button group (outside the Link) */}
         <div className="button-group">
           {showAddButton && (
             <button
