@@ -15,7 +15,14 @@ function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const { favourites, addFavourite, addToHistory } = useContext(GlobalContext);  // ✅ addToHistory 추가
+  const { favourites, addFavourite, addToHistory } = useContext(GlobalContext);
+
+  // URL 쿼리 date가 바뀌면 selectedDate 동기화
+  useEffect(() => {
+    if (urlDate && urlDate !== selectedDate) {
+      setSelectedDate(urlDate);
+    }
+  }, [urlDate, selectedDate]);
 
   useEffect(() => {
     if (!selectedDate) return;

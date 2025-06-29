@@ -44,7 +44,7 @@ function History() {
           {sortedHistory.map(date => (
             <li key={date} className="history-item">
               <span
-                onClick={() => navigate(`/?date=${date}`)}
+                onClick={() => navigate(`/home?date=${date}`)}
                 className="history-date"
               >
                 {date}

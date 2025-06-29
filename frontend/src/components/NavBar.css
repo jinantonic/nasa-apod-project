@@ -38,6 +38,14 @@
 .nav-link.active {
     color: #4caf50;
 }
+
+.nav-link:hover {
+    color: #c8ff00;
+}
+
+.dark .nav-link:hover {
+    color: #f7690b;
+}
   
 .switch {
     position: relative;
