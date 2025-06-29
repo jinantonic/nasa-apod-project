@@ -13,11 +13,13 @@
 /* 3. Intro 페이지 텍스트 배치 */
 .intro-page {
   position: relative;
+  overflow: hidden;
   color: white;
   text-align: center;
   padding: 40px 20px;
   background-color: transparent; /* ✅ 투명 */
   min-height: 100vh;
+  height: 100vh; /* 뷰포트 전체 높이 */
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -45,7 +47,7 @@
   left: 50%;
   width: 100px;
   height: 100px;
-  background: radial-gradient(circle, #ffcc00 0%, #ff9900 80%);
+  background: radial-gradient(circle, #FBFF64 0%, #ff9900 80%);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 50px 15px #ffcc00;
@@ -107,6 +109,40 @@
   animation-duration: 32s;
 }
 
+.orbit-svg {
+  position: fixed;
+  top: 53%;
+  left: 50%;
+  width: 97vmin;
+  height: 97vmin;
+  transform: translate(-50%, -50%);
+  animation: orbit-spin-svg 20s linear infinite;
+  z-index: 5;
+}
+
+@keyframes orbit-spin-svg {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.orbit-text {
+  font-size: 1rem;
+  fill: white;
+  text-shadow: 0 0 6px white;
+  opacity: 0; 
+  animation: textFadeInOut 20s linear infinite;
+  white-space: pre;
+}
+
+@keyframes textFadeInOut {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+
+
 /* 7. 행성 */
 .planet {
   position: absolute;
@@ -155,6 +191,12 @@
   animation: milkyWayFlow 15s linear infinite;
   z-index: 0;
 }
+
+/* 새로운 H1 전용 orbit 애니메이션 */
+/* @keyframes orbit-spin-h1 {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+} */
 
 /* 10. 텍스트 */
 .intro-text h1 {

@@ -3,13 +3,13 @@ import '../pages/Intro.css';
 
 function SpaceBackground() {
     const orbits = [
-        { className: 'orbit1', color: '#FF0000' },
+        { className: 'orbit1', color: '#FB3640' },
         { className: 'orbit2', color: '#FF7F00' },
-        { className: 'orbit3', color: '#FFFF00' },
-        { className: 'orbit4', color: '#00FF00' },
-        { className: 'orbit5', color: '#0000FF' },
-        { className: 'orbit6', color: '#4B0082' },
-        { className: 'orbit7', color: '#8B00FF' }
+        { className: 'orbit3', color: '#FFF455' },
+        { className: 'orbit4', color: '#06D001' },
+        { className: 'orbit5', color: '#00D7FF' },
+        { className: 'orbit6', color: '#0079FF' },
+        { className: 'orbit7', color: '#793FDF' }
   ];
 
   return (
