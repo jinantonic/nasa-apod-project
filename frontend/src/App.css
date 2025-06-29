@@ -54,7 +54,7 @@ p {
 }
 
 /* === Responsive Design (Mobile) === */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .app-container {
     padding: 10px;
     flex-direction: column;
