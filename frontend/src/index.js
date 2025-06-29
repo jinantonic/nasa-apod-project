@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import AppContent from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { GlobalProvider } from './contexts/GlobalContext';  // 수정
+import { GlobalProvider } from './contexts/GlobalContext';
 
+// Wrap entire app with GlobalProvider for shared state management
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <GlobalProvider>   {/* 수정: 최상위 Provider */}
-      <App />
+    <GlobalProvider>
+      <AppContent />
     </GlobalProvider>
   </React.StrictMode>
 );
