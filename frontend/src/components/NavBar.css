@@ -29,6 +29,14 @@
   color: #333;
 }
   
+.intro-navbar {
+  background-color: #000000;
+}
+
+.intro-navbar .nav-link {
+  color: #ffffff;
+}
+
 .dark .nav-link {
   color: #ddd;
 }
