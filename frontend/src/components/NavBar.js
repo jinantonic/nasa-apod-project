@@ -1,20 +1,19 @@
 import React, { useContext } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import './NavBar.css';
-import { GlobalContext } from '../contexts/GlobalContext';  // ThemeContext → GlobalContext로 변경
+import { GlobalContext } from '../contexts/GlobalContext';
 
 function NavBar() {
   const { darkMode, toggleDarkMode } = useContext(GlobalContext);
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Handle navigation link clicks
   const handleClick = (path) => {
     if (location.pathname === path) {
-      // 이미 그 페이지면 새로고침
-      window.location.reload();
+      window.location.reload(); // Reload the page if already on the same path
     } else {
-      // 다른 페이지면 이동
-      navigate(path);
+      navigate(path); // Navigate to a different page
     }
   };
 
