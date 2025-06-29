@@ -1,11 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './APODCard.css';
 
-function APODCard({ data, showAddButton = true, onAdd, showDeleteButton = false, onDelete }) {
+function APODCard({ data, showAddButton = true, onAdd, onError, showDeleteButton = false, onDelete }) {
+  // Tooltip visibility state for share button
   const [showShareTooltip, setShowShareTooltip] = useState(false);
   const tooltipRef = useRef(null);
 
+  // Construct share URL based on current location and APOD date
   const shareUrl = window.location.origin + `/?date=${data.date}`;
+
+  const handleAddClick = () => {
+    if (onAdd) {
+      onAdd(data);
+    }
+  };
 
   const handleShareClick = async () => {
     try {
@@ -14,9 +22,16 @@ function APODCard({ data, showAddButton = true, onAdd, showDeleteButton = false,
       setTimeout(() => setShowShareTooltip(false), 4000);
     } catch (err) {
       console.error('Failed to copy: ', err);
+      if (onError) {
+        onError({
+          title: 'Error',
+          message: 'Failed to copy the link.'
+        });
+      }
     }
   };
 
+  // Close tooltip if user clicks outside of it
   useEffect(() => {
     function handleClickOutside(event) {
       if (tooltipRef.current && !tooltipRef.current.contains(event.target)) {
@@ -31,100 +46,88 @@ function APODCard({ data, showAddButton = true, onAdd, showDeleteButton = false,
     };
   }, [showShareTooltip]);
 
+  // Share URLs for social media
   const facebookShare = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
   const twitterShare = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(data.title)}`;
   const instagramShare = `https://www.instagram.com/`;
 
   return (
-    <div className="apod-card" role="region" aria-label={`APOD: ${data.title}`}>
-      <h2 className="apod-title">{data.title}</h2>
-      <p className="apod-date">{data.date}</p>
-      <div className="apod-media">
-        {data.media_type === 'image' ? (
-          <img src={data.url} alt={data.title} className="apod-image" />
-        ) : (
-          <iframe
-            title={data.title}
-            src={data.url}
-            frameBorder="0"
-            allowFullScreen
-            className="apod-video"
-          />
-        )}
-      </div>
-      <p className="apod-description">{data.explanation}</p>
+    <>
+      <div className="apod-card" role="region" aria-label={`APOD: ${data.title}`}>
+        <h2 className="apod-title">{data.title}</h2>
+        <p className="apod-date">{data.date}</p>
+        <div className="apod-media">
+          {data.media_type === 'image' ? (
+            <img src={data.url} alt={data.title} className="apod-image" />
+          ) : (
+            <iframe
+              title={data.title}
+              src={data.url}
+              frameBorder="0"
+              allowFullScreen
+              className="apod-video"
+            />
+          )}
+        </div>
+        <p className="apod-description">{data.explanation}</p>
 
-      <div className="button-group">
-        {showAddButton && onAdd && (
+        <div className="button-group">
+          {showAddButton && (
+            <button
+              type="button"
+              className="favourite-button add-button"
+              onClick={handleAddClick}
+              aria-label={`Add ${data.title} to favourites`}
+            >
+              Add to favourites ❤️
+            </button>
+          )}
+
+          {showDeleteButton && onDelete && (
+            <button
+              type="button"
+              className="favourite-button delete-button"
+              onClick={() => onDelete(data.date, data.title)}
+              aria-label={`Remove ${data.title} from favourites`}
+            >
+              Remove from favourites 🗑️
+            </button>
+          )}
+
           <button
             type="button"
-            className="favourite-button add-button"
-            onClick={() => onAdd(data)}
-            aria-label={`Add ${data.title} to favourites`}
+            className="favourite-button share-button"
+            onClick={handleShareClick}
+            aria-label={`Share ${data.title}`}
+            ref={tooltipRef}
           >
-            Add to favourites ❤️
+            Share 🔗
           </button>
-        )}
 
-        {showDeleteButton && onDelete && (
-          <button
-            type="button"
-            className="favourite-button delete-button"
-            onClick={() => onDelete(data.date)}
-            aria-label={`Remove ${data.title} from favourites`}
-          >
-            Remove from favourites 🗑️
-          </button>
-        )}
-
-        <button
-          type="button"
-          className="favourite-button share-button"
-          onClick={handleShareClick}
-          aria-label={`Share ${data.title}`}
-          ref={tooltipRef}
-        >
-          Share 🔗
-        </button>
-
-        {showShareTooltip && (
-          <div className="share-tooltip" role="tooltip" ref={tooltipRef}>
-            <p>✅ Link copied to clipboard ✅<br /><strong>Share on:</strong></p>
-            <div className="share-icons">
-              <a
-                href={facebookShare}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Share on Facebook"
-              >
-                <FacebookIcon />
-              </a>
-              <a
-                href={twitterShare}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Share on Twitter"
-              >
-                <TwitterIcon />
-              </a>
-              <a
-                href={instagramShare}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Go to Instagram"
-              >
-                <InstagramIcon />
-              </a>
+          {showShareTooltip && (
+            <div className="share-tooltip" role="tooltip" ref={tooltipRef}>
+              <p>✅ Link copied to clipboard ✅<br /><strong>Share on:</strong></p>
+              <div className="share-icons">
+                <a href={facebookShare} target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
+                  <FacebookIcon />
+                </a>
+                <a href={twitterShare} target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter">
+                  <TwitterIcon />
+                </a>
+                <a href={instagramShare} target="_blank" rel="noopener noreferrer" aria-label="Go to Instagram">
+                  <InstagramIcon />
+                </a>
+              </div>
             </div>
-          </div>
-        )}
+          )}
         </div>
       </div>
+    </>
   );
 }
 
+// SVG icon components for social media buttons
 const iconStyle = { width: '24px', height: '24px', fill: 'white' };
-
 function FacebookIcon() {
   return (
     <svg style={iconStyle} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -132,7 +135,6 @@ function FacebookIcon() {
     </svg>
   );
 }
-
 function TwitterIcon() {
   return (
     <svg style={iconStyle} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -140,7 +142,6 @@ function TwitterIcon() {
     </svg>
   );
 }
-
 function InstagramIcon() {
   return (
     <svg style={iconStyle} viewBox="0 0 24 24" aria-hidden="true" focusable="false">

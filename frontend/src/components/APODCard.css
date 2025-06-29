@@ -3,7 +3,6 @@
   border-radius: 16px;
   padding: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  /* box-shadow: 0 0 12px rgba(0, 0, 0, 0.1); */
   /* margin: 30px auto; */
   margin-top: 24px;
   max-width: 800px;
@@ -25,15 +24,12 @@
   }
 }
 
-
 .apod-title {
   font-size: 1.8rem;
   margin-bottom: 0.25rem;
   color: #222; /* 라이트 모드용 기본 텍스트 색상 */
   transition: color 0.3s;
 }
-
-
 
 .apod-date {
   color: #888;
@@ -140,8 +136,8 @@
 /* 공유툴팁 말풍선 */
 .share-tooltip {
   position: absolute;
-  bottom: 50px;
-  left: 50%;
+  bottom: 60px;
+  left: 75%;
   transform: translateX(-50%);
   background: #333;
   color: white;

@@ -3,11 +3,12 @@ import DatePicker from '../components/DatePicker';
 import APODCard from '../components/APODCard';
 import Loading from '../components/Loading';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { GlobalContext } from '../contexts/GlobalContext'; 
+import { GlobalContext } from '../contexts/GlobalContext';
 
 function Home() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+
   const urlDate = searchParams.get('date');
   const today = new Date().toISOString().split("T")[0];
   const minDate = '1995-06-16';
@@ -17,16 +18,14 @@ function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const { favourites, addFavourite, addToHistory } = useContext(GlobalContext);
+  const { favourites, addFavourite, addToHistory, showModal, modalMessage, showModalHandler, closeModal } = useContext(GlobalContext);
 
-  // URL 쿼리 date가 바뀌면 selectedDate 동기화
   useEffect(() => {
     if (urlDate && urlDate !== selectedDate) {
       setSelectedDate(urlDate);
     }
   }, [urlDate]);
 
-  // selectedDate가 바뀔 때 URL 쿼리를 업데이트 (history.push 대신 navigate)
   const onDateChange = (newDate) => {
     setSelectedDate(newDate);
     navigate(`/home?date=${newDate}`, { replace: true });
@@ -34,34 +33,29 @@ function Home() {
 
   useEffect(() => {
     if (!selectedDate) return;
-  
+
     if (selectedDate > today) {
       setApodData(null);
       setError("You cannot select a future date.");
       setLoading(false);
       return;
     }
-  
     if (selectedDate < minDate) {
       setApodData(null);
       setError(`Date cannot be earlier than ${minDate}.`);
       setLoading(false);
       return;
     }
-  
+
     const fetchData = async () => {
       setLoading(true);
       setError(null);
       try {
         const res = await fetch(`http://localhost:5001/api/apod?date=${selectedDate}`);
         if (!res.ok) throw new Error('Failed to fetch');
-  
         const data = await res.json();
-  
-        if (data.code === 404) {
-          throw new Error(data.msg || 'No data available for this date.');
-        }
-  
+        if (data.code === 404) throw new Error(data.msg || 'No data for this date.');
+
         setApodData(data);
         addToHistory(selectedDate);
       } catch (err) {
@@ -71,21 +65,27 @@ function Home() {
         setLoading(false);
       }
     };
-  
+
     fetchData();
   }, [selectedDate, today, addToHistory]);
-  
 
   const handleAddFavourite = (item) => {
-    if (favourites.some(fav => fav.date === item.date)) {
-      alert("This item is already in your favourites!");
-      return;
-    }
-    addFavourite(item);
-    alert("Added to favourites!");
-  };
+    const alreadyAdded = favourites.some(fav => fav.date === item.date);
 
-  const isFavourite = apodData && favourites.some(item => item.date === apodData.date);
+    if (alreadyAdded) {
+      showModalHandler({
+        title: '⛔️ Dupliate Add ⛔️',
+        message: (
+          <>
+            <span style={{ fontWeight: 'bold', fontSize: '1.1em' }}>{item.title}</span> is already in your favorites.
+          </>
+        ),
+      });
+    } else {
+      addFavourite(item);
+      // addFavourite 내부에서 모달 열기 때문에 여기선 별도 호출 불필요
+    }
+  };
 
   return (
     <div className="app-container">
@@ -108,10 +108,20 @@ function Home() {
       {apodData && !loading && !error && (
         <APODCard
           data={apodData}
-          showAddButton={!isFavourite}
+          showAddButton={true}
           showDeleteButton={false}
-          onAdd={() => handleAddFavourite(apodData)}
+          onAdd={handleAddFavourite}
         />
+      )}
+
+      {showModal && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <h2>{modalMessage.title}</h2>
+            <p>{modalMessage.message}</p>
+            <button onClick={closeModal}>닫기</button>
+          </div>
+        </div>
       )}
     </div>
   );

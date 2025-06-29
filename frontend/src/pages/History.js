@@ -24,12 +24,14 @@ function History() {
 
       <div className="sort-buttons">
         <button
+          type="button" 
           className={sortOrder === 'recent' ? 'active' : ''}
           onClick={() => setSortOrder('recent')}
         >
           Recent First
         </button>
         <button
+          type="button"
           className={sortOrder === 'dateAsc' ? 'active' : ''}
           onClick={() => setSortOrder('dateAsc')}
         >

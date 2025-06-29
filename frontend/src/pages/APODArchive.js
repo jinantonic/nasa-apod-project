@@ -5,7 +5,7 @@ import './APODArchive.css';
 import '../components/APODCard.css';
 
 function APODArchive() {
-  const { favourites, addFavourite } = useContext(GlobalContext);
+  const { favourites, addFavourite, showModal, modalMessage, showModalHandler, closeModal } = useContext(GlobalContext);
 
   const [mediaType, setMediaType] = useState('all');
   const [startDate, setStartDate] = useState('');
@@ -178,11 +178,17 @@ function APODArchive() {
 
   const handleAddFavourite = (item) => {
     if (favourites.some(fav => fav.date === item.date)) {
-      alert("This item is already in your favourites!");
+      showModalHandler({
+        title: '⛔️ Dupliate Add ⛔️',
+        message: (
+          <>
+            <span style={{ fontWeight: 'bold', fontSize: '1.1em' }}>{item.title}</span> is already in your favorites.
+          </>
+        ),
+      });
       return;
     }
     addFavourite(item);
-    alert("Added to favourites!");
   };
 
   const handleClear = () => {
@@ -236,12 +242,12 @@ function APODArchive() {
 
         <label>
           <span style={{ visibility: 'hidden' }}>Search</span>
-          <button onClick={handleSearch} disabled={dateRangeTooLong}>Search</button>
+          <button type="button" onClick={handleSearch} disabled={dateRangeTooLong}>Search</button>
         </label>
 
         <label>
           <span style={{ visibility: 'hidden' }}>Clear</span>
-          <button onClick={handleClear} className="clear-button">Clear</button>
+          <button type="button" onClick={handleClear} className="clear-button">Clear</button>
         </label>
       </div>
 
@@ -252,7 +258,7 @@ function APODArchive() {
       )}
 
       <div className="video-dates-toggle">
-        <button onClick={() => setShowVideoDates(prev => !prev)}>
+        <button type="button" onClick={() => setShowVideoDates(prev => !prev)}>
           {showVideoDates ? '⬆️ Hide Sample Video Dates' : '⬇️ Show Sample Video Dates'}
         </button>
       </div>
@@ -288,8 +294,8 @@ function APODArchive() {
               }}
             >
               <p style={{ margin: '0 0 4px' }}><strong>{selectedDate}</strong></p>
-              <button onClick={() => applyDate('start')}>Add to Start Date</button>
-              <button onClick={() => applyDate('end')}>Add to End Date</button>
+              <button type="button" onClick={() => applyDate('start')}>Add to Start Date</button>
+              <button type="button" onClick={() => applyDate('end')}>Add to End Date</button>
             </div>
           )}
         </div>
@@ -309,25 +315,28 @@ function APODArchive() {
         )}
         
         {results.map(item => {
-          const isInFavourites = favourites.some(fav => fav.date === item.date);
           return (
             <div key={item.date} className="result-card-wrapper">
               <APODCard
                 data={item}
                 showAddButton={true}  // 항상 보이게
-                onAdd={() => {
-                  if (isInFavourites) {
-                    alert("This item is already in your favourites!");
-                    return;
-                  }
-                  addFavourite(item);
-                  alert("Added to favourites!");
-                }}
+                onAdd={() => handleAddFavourite(item)}
               />
             </div>
           );
         })}
       </div>
+
+      {/* 모달 출력 */}
+      {showModal && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <h2>{modalMessage.title}</h2>
+            <p>{modalMessage.message}</p>
+            <button onClick={closeModal}>닫기</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

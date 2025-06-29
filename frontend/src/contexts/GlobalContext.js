@@ -3,7 +3,7 @@ import React, { createContext, useState, useEffect } from 'react';
 export const GlobalContext = createContext();
 
 export function GlobalProvider({ children }) {
-  // 🌙 다크모드 상태
+  // 다크모드 상태
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem('darkMode') === 'true';
   });
@@ -14,17 +14,36 @@ export function GlobalProvider({ children }) {
 
   const toggleDarkMode = () => setDarkMode(prev => !prev);
 
-  // ⭐ 즐겨찾기 상태
   const [favourites, setFavourites] = useState(() => {
     const stored = localStorage.getItem('favourites');
     return stored ? JSON.parse(stored) : [];
   });
+
+  // 모달 상태 (객체 형태로 title과 message 관리)
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState({ title: '', message: '' });
+
+  // 모달 열기 함수 (객체 받음)
+  const showModalHandler = ({ title, message }) => {
+    setModalMessage({ title, message });
+    setShowModal(true);
+  };
+
+  // 모달 닫기 함수
+  const closeModal = () => {
+    setShowModal(false);
+    setModalMessage({ title: '', message: '' });
+  };
 
   const addFavourite = (item) => {
     if (favourites.find(fav => fav.date === item.date)) return;
     const updated = [...favourites, item];
     setFavourites(updated);
     localStorage.setItem('favourites', JSON.stringify(updated));
+    showModalHandler({
+      title: '⭐ Favorites ⭐',
+      message: `"${item.title}"has been added to your favorites!`,
+    });
   };
 
   const removeFavourite = (date) => {
@@ -33,7 +52,7 @@ export function GlobalProvider({ children }) {
     localStorage.setItem('favourites', JSON.stringify(updated));
   };
 
-  // 🕘 검색 히스토리 상태
+  // 검색 히스토리 상태
   const [history, setHistory] = useState(() => {
     const stored = localStorage.getItem('history');
     return stored ? JSON.parse(stored) : [];
@@ -62,7 +81,11 @@ export function GlobalProvider({ children }) {
       removeFavourite,
       history,
       addToHistory,
-      removeFromHistory
+      removeFromHistory,
+      showModal,
+      modalMessage,
+      showModalHandler,
+      closeModal,
     }}>
       {children}
     </GlobalContext.Provider>

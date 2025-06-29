@@ -1,12 +1,16 @@
 import React, { useContext, useState } from 'react';
 import { GlobalContext } from '../contexts/GlobalContext';
 import APODCard from '../components/APODCard';
+import Modal from '../components/Modal';
 import './Favourites.css';
 
 function Favourites() {
   const { favourites, removeFavourite } = useContext(GlobalContext);
 
   const [sortOption, setSortOption] = useState('latest');
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState({ title: '', message: '' });
+
 
   const sortedFavourites = [...favourites].sort((a, b) => {
     switch (sortOption) {
@@ -21,6 +25,17 @@ function Favourites() {
     }
   });
 
+  const handleDelete = (date, title) => {
+    removeFavourite(date);
+
+    setModalContent({
+      title: 'Removed!',
+      message: `"${title}" has been removed from your favourites!`
+    });
+    setModalOpen(true);
+  };
+
+
   return (
     <div className="app-container">
       <h1>⭐ Your Favourites</h1>
@@ -28,18 +43,21 @@ function Favourites() {
       {favourites.length > 0 && (
         <div className="sort-buttons">
           <button
+            type="button" 
             className={sortOption === 'latest' ? 'active' : ''}
             onClick={() => setSortOption('latest')}
           >
             Latest First
           </button>
           <button
+            type="button" 
             className={sortOption === 'oldest' ? 'active' : ''}
             onClick={() => setSortOption('oldest')}
           >
             Oldest First
           </button>
           <button
+            type="button" 
             className={sortOption === 'title' ? 'active' : ''}
             onClick={() => setSortOption('title')}
           >
@@ -57,10 +75,17 @@ function Favourites() {
             data={item}
             showAddButton={false}
             showDeleteButton={true}
-            onDelete={removeFavourite}
+            onDelete={handleDelete}
           />
         ))
       )}
+
+      <Modal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        title={modalContent.title}
+        message={modalContent.message}
+      />
     </div>
   );
 }
