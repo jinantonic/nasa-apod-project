@@ -1,23 +1,31 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { GlobalContext } from '../contexts/GlobalContext';
 import APODCard from '../components/APODCard';
 import './Favourites.css';
 
 function Favourites() {
   const { favourites, removeFavourite } = useContext(GlobalContext);
-  const [sortOption, setSortOption] = useState('latest');
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const initialSort = searchParams.get('sort') || 'latest';
+  const [sortOption, setSortOption] = useState(initialSort);
+
+  useEffect(() => {
+    setSearchParams({ sort: sortOption });
+  }, [sortOption, setSearchParams]);
 
   const sortedFavourites = [...favourites].sort((a, b) => {
-    if (sortOption === 'latest') {
-      return new Date(b.date) - new Date(a.date);
+    switch (sortOption) {
+      case 'latest':
+        return new Date(b.date) - new Date(a.date);
+      case 'oldest':
+        return new Date(a.date) - new Date(b.date);
+      case 'title':
+        return a.title.localeCompare(b.title);
+      default:
+        return 0;
     }
-    if (sortOption === 'oldest') {
-      return new Date(a.date) - new Date(b.date);
-    }
-    if (sortOption === 'title') {
-      return a.title.localeCompare(b.title);
-    }
-    return 0;
   });
 
   return (
@@ -29,12 +37,13 @@ function Favourites() {
           <label htmlFor="sort">Sort by:</label>
           <select
             id="sort"
+            aria-label="Sort favourites"
             value={sortOption}
             onChange={(e) => setSortOption(e.target.value)}
           >
-            <option value="latest">🆕 Latest First</option>
-            <option value="oldest">📜 Oldest First</option>
-            <option value="title">🔤 Title (A-Z)</option>
+            <option value="latest" aria-label="Latest first">🆕 Latest First</option>
+            <option value="oldest" aria-label="Oldest first">📜 Oldest First</option>
+            <option value="title" aria-label="Title A to Z">🔤 Title (A-Z)</option>
           </select>
         </div>
       )}
@@ -48,7 +57,7 @@ function Favourites() {
             data={item}
             showAddButton={false}
             showDeleteButton={true}
-            onDelete={() => removeFavourite(item.date)}
+            onDelete={removeFavourite}
           />
         ))
       )}

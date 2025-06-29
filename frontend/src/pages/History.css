@@ -24,10 +24,10 @@
     flex-grow: 1;
 }
   
-.delete-button {
+/* .delete-button {
     background: none;
     border: none;
-    color: #888;
+    color: white;
     font-size: 16px;
     cursor: pointer;
     padding: 0 6px;
@@ -36,7 +36,7 @@
   
 .delete-button:hover {
     color: #e63946;
-}
+} */
   
 .sort-buttons {
     display: flex;

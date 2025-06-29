@@ -237,14 +237,4 @@ input[type="date"]:hover {
   font-size: 0.95rem;
 }
 
-.favourite-button:hover,
-.favourite-button.delete-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-}
 
-.favourite-button,
-.favourite-button.delete-button {
-  transition: all 0.3s ease;
-}

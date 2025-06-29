@@ -17,4 +17,20 @@
     background-color: var(--bg-color);
     color: var(--text-color);
 }
-  
+
+/* 카드 애니메이션 */
+.apod-card {
+  animation: fadeInUp 0.6s ease both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

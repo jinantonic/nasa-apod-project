@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import APODCard from '../components/APODCard';
 import { GlobalContext } from '../contexts/GlobalContext';
 import './APODArchive.css';
+import '../components/APODCard.css';
 
-function MediaFilter() {
+function APODArchive() {
   const { favourites, addFavourite } = useContext(GlobalContext);
 
   const [mediaType, setMediaType] = useState('all');
@@ -331,4 +332,4 @@ function MediaFilter() {
   );
 }
 
-export default MediaFilter;
+export default APODArchive;
