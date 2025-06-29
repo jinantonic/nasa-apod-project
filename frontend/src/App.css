@@ -27,6 +27,7 @@ body {
 .app-container {
   max-width: 1200px;
   /* margin: 0 auto; */
+  margin: 20px auto;
   padding: 80px 20px 20px; /* 위쪽 여백을 nav바 높이만큼 확보 */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: transparent;
@@ -236,5 +237,3 @@ input[type="date"]:hover {
 .toggle-label {
   font-size: 0.95rem;
 }
-
-

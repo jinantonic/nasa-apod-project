@@ -15,7 +15,7 @@ function History() {
   }
 
   return (
-    <div className="history-container">
+    <div className="app-container">
       <h1>🕓 Recently Viewed</h1>
 
       <p className="history-info">
