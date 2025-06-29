@@ -29,8 +29,12 @@ function Favourites() {
     removeFavourite(date);
 
     setModalContent({
-      title: 'Removed!',
-      message: `"${title}" has been removed from your favourites!`
+      title: '🤔 Removed from Favorites 🤔',
+      message: (
+        <>
+          <span style={{ fontWeight: 'bold', fontSize: '1.1em' }}>{title}</span> is removed from your favorites.
+        </>
+      ),
     });
     setModalOpen(true);
   };
