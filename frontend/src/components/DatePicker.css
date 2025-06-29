@@ -1,21 +1,21 @@
 .datepicker-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
 }
   
 .datepicker-label {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    color: #444;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #444;
 }
   
 .datepicker-input {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
 .datepicker-input-group {
@@ -28,14 +28,14 @@
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #aaa;
+  color: #444;
   padding: 0 8px;
   user-select: none;
   transition: color 0.3s;
 }
 
 .date-nav-btn:disabled {
-  color: #444;
+  color: #aaa;
   cursor: not-allowed;
 }
 

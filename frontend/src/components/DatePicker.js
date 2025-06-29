@@ -1,8 +1,7 @@
-import React from 'react';
 import './DatePicker.css';
 
 function DatePicker({ selectedDate, onDateChange, min, max }) {
-  // 날짜를 하루씩 더하거나 빼는 함수 (문자열 "YYYY-MM-DD" 처리)
+  // Function to shift the date by a given offset (in days)
   const changeDateBy = (dateStr, offset) => {
     const date = new Date(dateStr);
     date.setDate(date.getDate() + offset);
@@ -12,20 +11,20 @@ function DatePicker({ selectedDate, onDateChange, min, max }) {
     return `${yyyy}-${mm}-${dd}`;
   };
 
-  // 이전 날짜 (min 날짜보다 작으면 비활성)
+  // Calculate previous date and check if it's within min range
   const prevDate = changeDateBy(selectedDate, -1);
   const canGoPrev = prevDate >= min;
 
-  // 다음 날짜 (max 날짜보다 크면 비활성)
+  // Calculate next date and check if it's within max range
   const nextDate = changeDateBy(selectedDate, 1);
   const canGoNext = nextDate <= max;
 
   return (
     <div className="datepicker-container">
       <label htmlFor="date" className="datepicker-label">Select a date:</label>
-
       <div className="datepicker-input-group">
         <button
+          type="button"
           className="date-nav-btn"
           onClick={() => canGoPrev && onDateChange(prevDate)}
           disabled={!canGoPrev}
@@ -45,6 +44,7 @@ function DatePicker({ selectedDate, onDateChange, min, max }) {
         />
 
         <button
+          type="button"
           className="date-nav-btn"
           onClick={() => canGoNext && onDateChange(nextDate)}
           disabled={!canGoNext}
