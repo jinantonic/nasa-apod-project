@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
-import './NavBar.css';
 import { GlobalContext } from '../contexts/GlobalContext';
+import './NavBar.css';
 
 function NavBar() {
   const { darkMode, toggleDarkMode } = useContext(GlobalContext);
