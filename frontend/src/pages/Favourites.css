@@ -1,24 +1,30 @@
+/* 이전 sort-controls 스타일 제거 */
 .sort-controls {
+    display: none;
+}
+
+/* History 페이지와 동일한 스타일 추가 */
+.sort-buttons {
     display: flex;
-    align-items: center;
     gap: 0.5rem;
     margin-bottom: 1rem;
 }
 
-.sort-controls label {
-    font-weight: bold;
-}
-  
-.sort-controls select {
-    padding: 4px 8px;
-    font-size: 1rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+.sort-buttons button {
+    padding: 6px 12px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-/* 카드 애니메이션 */
+.sort-buttons button.active {
+    background-color: #333;
+    color: white;
+}
+
+/* 카드 애니메이션 (기존 유지) */
 .apod-card {
   animation: fadeInUp 0.6s ease both;
 }
@@ -33,4 +39,3 @@
     transform: translateY(0);
   }
 }
-

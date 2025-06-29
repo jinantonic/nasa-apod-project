@@ -1,19 +1,12 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
 import { GlobalContext } from '../contexts/GlobalContext';
 import APODCard from '../components/APODCard';
 import './Favourites.css';
 
 function Favourites() {
   const { favourites, removeFavourite } = useContext(GlobalContext);
-  const [searchParams, setSearchParams] = useSearchParams();
 
-  const initialSort = searchParams.get('sort') || 'latest';
-  const [sortOption, setSortOption] = useState(initialSort);
-
-  useEffect(() => {
-    setSearchParams({ sort: sortOption });
-  }, [sortOption, setSearchParams]);
+  const [sortOption, setSortOption] = useState('latest');
 
   const sortedFavourites = [...favourites].sort((a, b) => {
     switch (sortOption) {
@@ -33,18 +26,25 @@ function Favourites() {
       <h1>⭐ Your Favourites</h1>
 
       {favourites.length > 0 && (
-        <div className="sort-controls">
-          <label htmlFor="sort">Sort by:</label>
-          <select
-            id="sort"
-            aria-label="Sort favourites"
-            value={sortOption}
-            onChange={(e) => setSortOption(e.target.value)}
+        <div className="sort-buttons">
+          <button
+            className={sortOption === 'latest' ? 'active' : ''}
+            onClick={() => setSortOption('latest')}
           >
-            <option value="latest" aria-label="Latest first">🆕 Latest First</option>
-            <option value="oldest" aria-label="Oldest first">📜 Oldest First</option>
-            <option value="title" aria-label="Title A to Z">🔤 Title (A-Z)</option>
-          </select>
+            Latest First
+          </button>
+          <button
+            className={sortOption === 'oldest' ? 'active' : ''}
+            onClick={() => setSortOption('oldest')}
+          >
+            Oldest First
+          </button>
+          <button
+            className={sortOption === 'title' ? 'active' : ''}
+            onClick={() => setSortOption('title')}
+          >
+            Title (A-Z)
+          </button>
         </div>
       )}
 
