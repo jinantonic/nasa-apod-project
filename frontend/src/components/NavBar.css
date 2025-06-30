@@ -49,6 +49,15 @@
   color: #27548A !important;
 }
 
+/* 다크모드 인트로 페이지 active, hover 상태 스타일 추가 */
+.intro-navbar.dark .nav-link.active {
+  color: #00D7FF !important;
+}
+
+.intro-navbar.dark .nav-link:hover {
+  color: #f5c8a1 !important;
+}
+
 /* === Toggle Switch Style === */
 .switch {
   position: relative;
