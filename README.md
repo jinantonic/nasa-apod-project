@@ -7,10 +7,16 @@ Living in **Ireland**, we have many cloudy days, which makes it hard to see a cl
 
 **This project is dedicated to dreamers like me.**
 
-**NASA APOD Project**, a web application that lets you explore space through NASA's Astronomy Picture of the Day (APOD) and other NASA open APIs. This was built using **React** for the frontend and **Node.js + Express** for the backend, this project showcases space data in a beautiful and interactive way.
+This is the **NASA APOD Project**, a web application that lets you explore space through NASA's Astronomy Picture of the Day (APOD) and other NASA open APIs. Built using **React** for the frontend and **Node.js + Express** for the backend, this project showcases space data in a beautiful and interactive way.
+
+
+## 🛰️ Tech Stack
+- **Frontend**: React, Context API, CSS
+- **Backend**: Node.js, Express
+- **API**: NASA Open API (APOD)
+
 
 ## ✨ Features
-
 - Browse NASA's Astronomy Picture of the Day
 - View APOD archive by date
 - Add your favourite images to a favourites page
@@ -20,13 +26,6 @@ Living in **Ireland**, we have many cloudy days, which makes it hard to see a cl
 - Responsive design for different devices
 - Global context for state management (e.g., history and favourites)
 
-## 🛰️ Tech Stack
-
-- **Frontend**: React, Context API, CSS
-- **Backend**: Node.js, Express
-- **API**: NASA Open API (APOD)
-
----
 
 ## 💻 Project Structure
 nasa-apod-project/
@@ -60,7 +59,5 @@ nasa-apod-project/
 │ └── ...
 └── README.md
 
-yaml
-Copy
-Edit
+
 
