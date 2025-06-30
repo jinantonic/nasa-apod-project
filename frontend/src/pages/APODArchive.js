@@ -203,7 +203,7 @@ function APODArchive() {
   const handleAddFavourite = (item) => {
     if (favourites.some(fav => fav.date === item.date)) {
       showModalHandler({
-        title: '⚠️ Already Added ⚠️',
+        title: '⚠️ Duplicate Add ⚠️',
         message: (
           <>
             You've already added <span style={{ fontWeight: 'bold', color: '#27548A' }}>{item.title}</span> to your favorites.
