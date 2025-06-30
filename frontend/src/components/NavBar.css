@@ -33,29 +33,20 @@
 }
 
 /* === Navigation Bar Style for Intro Page === */
-.intro-navbar:not(.dark), .intro-navbar.dark {
+.intro-navbar {
   background-color: #000000;
 }
 
-.intro-navbar:not(.dark) .nav-link, .intro-navbar.dark .nav-link {
+.intro-navbar .nav-link {
   color: #ffffff;
 }
 
-.intro-navbar:not(.dark) .nav-link.active {
+.intro-navbar .nav-link.active {
   color: #FF7F00 !important;
 }
 
-.intro-navbar:not(.dark) .nav-link:hover {
+.intro-navbar .nav-link:hover {
   color: #27548A !important;
-}
-
-/* 다크모드 인트로 페이지 active, hover 상태 스타일 추가 */
-.intro-navbar.dark .nav-link.active {
-  color: #00D7FF !important;
-}
-
-.intro-navbar.dark .nav-link:hover {
-  color: #f5c8a1 !important;
 }
 
 /* === Toggle Switch Style === */

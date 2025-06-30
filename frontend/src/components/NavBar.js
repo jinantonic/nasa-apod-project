@@ -18,7 +18,7 @@ function NavBar() {
   };
 
   return (
-    <nav className={`navbar ${location.pathname === '/' ? 'intro-navbar' : darkMode ? 'dark' : ''}`}>
+    <nav className={`navbar intro-navbar ${darkMode ? 'dark' : ''}`}>
       <div className="nav-left">
         <NavLink to="/" className="nav-link" onClick={() => handleClick('/')}>Intro</NavLink>
         <NavLink to="/home" className="nav-link" onClick={() => handleClick('/home')}>Home</NavLink>
