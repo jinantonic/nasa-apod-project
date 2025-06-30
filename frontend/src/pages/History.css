@@ -31,27 +31,5 @@
   cursor: pointer;
   flex-grow: 1;
 }
-  
-.sort-buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  font-size: 1rem;
-  justify-content: center;
-}
-  
-.sort-buttons button {
-  flex: 1;
-  padding: 10px 10px;
-  background-color: #ddd;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  max-width: 150px;
-}
-  
-.sort-buttons button.active {
-  background-color: #333;
-  color: white;
-}
+
   

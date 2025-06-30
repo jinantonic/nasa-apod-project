@@ -29,14 +29,14 @@
   max-width: 800px;
 }
 
-.archive-page .apod-card:hover {
+.archive-page .apod-card:hover, .favourites-page .apod-card:hover {
   border: 3px solid #FF7F00;
   box-shadow: 0 0 5px rgba(231, 139, 72, 5);
 }
 
 .home-page .apod-card {
-  width: auto;      /* 너비 자동, 이미지 크기에 따라 결정 */
-  max-width: 100vw; /* 화면 최대 너비 제한 */
+  width: auto;
+  max-width: 100vw;
   height: auto;
   border-color: rgba(255, 255, 255, 0.4);
 }
@@ -131,7 +131,7 @@
 }
 
 .favourite-button.add-button {
-  background-color: #4b9047;
+  background-color: #6cb169;
 }
 
 .favourite-button.add-button:hover {
@@ -139,11 +139,11 @@
 }
 
 .favourite-button.delete-button {
-  background-color: #ff4d4f;
+  background-color: #fb6164;
 }
 
 .favourite-button.delete-button:hover {
-  background-color: #d9363e;
+  background-color: #e24446;
 }
 
 .favourite-button.share-button {
@@ -289,7 +289,7 @@
 }
 
 .dark .apod-title {
-  color: #fdaa6e;
+  color: #00D7FF;
 }
 
 .dark .apod-description {

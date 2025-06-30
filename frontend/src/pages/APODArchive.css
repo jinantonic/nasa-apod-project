@@ -49,11 +49,11 @@
 }
 
 .filter-controls .clear-button {
-  background-color: #f7830f;
+  background-color: #fb6164;
 }
 
 .filter-controls .clear-button:hover {
-  background-color: #df4f01;
+  background-color: #e24446;
 }
 
 /* === Result Cards and Video Dates Section === */
