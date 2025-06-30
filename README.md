@@ -121,5 +121,5 @@ npm install
 npm start
 ```
 
-The backend server will run on 'http://localhost:5001' by default (or as configured).
+The backend server will run on http://localhost:5001 by default (or as configured).
 
