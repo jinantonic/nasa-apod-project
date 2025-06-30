@@ -33,11 +33,11 @@
 }
 
 /* === Navigation Bar Style for Intro Page === */
-.intro-navbar {
+.intro-navbar:not(.dark), .intro-navbar.dark {
   background-color: #000000;
 }
 
-.intro-navbar .nav-link {
+.intro-navbar:not(.dark), .intro-navbar.dark {
   color: #ffffff;
 }
 
