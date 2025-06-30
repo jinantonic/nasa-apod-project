@@ -1,15 +1,30 @@
-.dark .history-info {
-  color: white;
+
+.app-container-info {
+  color: #27548A;
+  margin-top: 0px;
+  padding-bottom: 30px;
 }
 
-.history-info {
-  color: #27548A;
-  padding-bottom: 30px;
+.history-page .sort-buttons button {
+  margin-bottom: 16px;
 }
 
 .history-list {
   list-style: none;
   padding: 0;
+  animation: fadeIn 0.6s ease-in-out;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
   
 .history-item {
@@ -21,16 +36,39 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
   
 .history-item:hover {
-  background-color: #e0e7ff;
+  border: 3px solid #27548A;
+  background-color: #bad6f7;
+  box-shadow: 0 0 5px rgba(39, 84, 138, 1);
 }
   
 .history-date {
   cursor: pointer;
   flex-grow: 1;
+  font-size: 17px;
+  font-weight: bold;
+  color: #123156;
 }
+
+.history-page .delete-button {
+  padding: 2px 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fb6164;
+}
+
+.history-page .delete-button:hover {
+  background-color: #e24446;
+  transition: all 0.3s ease;
+}
+
+/* === Dark Mode Style */
+.dark .app-container-info {
+  color: #f5c8a1;
+}
+
 
   

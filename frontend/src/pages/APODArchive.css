@@ -41,7 +41,7 @@
 }
 
 .filter-controls select:hover {
-  box-shadow: 0 0 5px rgba(231, 139, 72, 3);
+  box-shadow: 0 0 5px rgba(231, 139, 72, 1);
 }
 
 .filter-controls button:hover {

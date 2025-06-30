@@ -31,7 +31,7 @@
 
 .archive-page .apod-card:hover, .favourites-page .apod-card:hover {
   border: 3px solid #FF7F00;
-  box-shadow: 0 0 5px rgba(231, 139, 72, 5);
+  box-shadow: 0 0 5px rgba(231, 139, 72, 1);
 }
 
 .home-page .apod-card {
