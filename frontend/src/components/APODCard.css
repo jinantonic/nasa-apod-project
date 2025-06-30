@@ -52,18 +52,18 @@
   transition: color 0.3s;
 }
 
+.apod-date {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #000000;
+}
+
 .apod-description {
   font-size: 1rem;
   margin-top: 2rem;
   line-height: 1.6;
   text-align: justify;
-  color: #22262b;
-}
-
-.apod-date {
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-  color: #22262b;
+  color: #000000;
 }
 
 .apod-image, .apod-video, iframe {
@@ -284,7 +284,7 @@
 
 /* === Dark Mode Styles */
 .dark .apod-card {
-  background-color: #393838;
+  background-color: #4e4d4d;
   color: #f1f1f1;
 }
 
@@ -293,9 +293,6 @@
 }
 
 .dark .apod-date, .dark .apod-description {
-  color: #c2c0c0;
+  color: #ffffff;
 }
 
-/* .dark .apod-date {
-  color: #c2c0c0;
-} */
