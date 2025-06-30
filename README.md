@@ -15,19 +15,20 @@ This is the **NASA APOD Project**, a web application that lets you explore space
 - **Frontend**: React, Context API, CSS
 - **Backend**: Node.js, Express
 - **API**: NASA Open API (APOD)
-
+<br /><br /><br />
 
 
 ## ✨ Features
-- Browse NASA's Astronomy Picture of the Day
-- View APOD archive by date
-- Add your favourite images to a favourites page
-- View browsing history
-- Date picker to easily select and explore different APODs
-- Beautiful modal views with space-themed backgrounds
-- Responsive design for different devices
-- Global context for state management (e.g., history and favourites)
-
+- Intro page that brings a mini universe to your screen
+- Browse NASA's Astronomy Picture of the Day (APOD)
+- Explore the APOD archive by date and media type
+- Save your favorite content to a dedicated favorites page
+- View and interact with your browsing history
+- Easily select and explore APODs using a date picker
+- Enjoy an interactive UI with filters, search, modals, and more
+- Responsive design that works seamlessly across devices
+- Global context for efficient state management (e.g., history and favorites)
+<br /><br /><br />
 
 
 ## 💻 Project Structure
