@@ -37,7 +37,7 @@
   background-color: #000000;
 }
 
-.intro-navbar:not(.dark), .intro-navbar.dark {
+.intro-navbar:not(.dark) .nav-link, .intro-navbar.dark .nav-link {
   color: #ffffff;
 }
 
