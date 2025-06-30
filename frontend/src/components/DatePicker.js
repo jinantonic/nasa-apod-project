@@ -21,7 +21,7 @@ function DatePicker({ selectedDate, onDateChange, min, max }) {
 
   return (
     <div className="datepicker-container">
-      <label htmlFor="date" className="datepicker-label">Select a date:</label>
+      <label htmlFor="date" className="datepicker-label"><strong>Select a date:</strong></label>
       <div className="datepicker-input-group">
         <button
           type="button"

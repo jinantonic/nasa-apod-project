@@ -77,7 +77,12 @@ function Favourites() {
       )}
 
       {favourites.length === 0 ? (
-        <p>You have no favourites yet. Go explore and add some!</p>
+        <>
+          <div className="error-card">
+            <h2>⚠️ WARNING ⚠️</h2>
+            <p className="app-container-warn">You have no favourites yet. Go explore and add some!</p>
+          </div>
+        </>
       ) : (
         sortedFavourites.map(item => (
           <APODCard

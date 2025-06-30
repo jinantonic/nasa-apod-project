@@ -272,7 +272,7 @@ function APODArchive() {
       </div>
 
       {dateRangeTooLong && (
-        <div className="warning-text">⚠️ Please limit your search to a maximum of 30 days ⚠️</div>
+        <div>⚠️ Please limit your search to a maximum of 30 days ⚠️</div>
       )}
 
       <div className="video-dates-toggle">

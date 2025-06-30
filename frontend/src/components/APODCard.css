@@ -292,10 +292,10 @@
   color: #00D7FF;
 }
 
-.dark .apod-description {
+.dark .apod-date, .dark .apod-description {
   color: #c2c0c0;
 }
 
-.dark .apod-date {
+/* .dark .apod-date {
   color: #c2c0c0;
-}
+} */

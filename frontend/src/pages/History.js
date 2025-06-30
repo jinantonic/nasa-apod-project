@@ -34,25 +34,32 @@ function History() {
         The <strong>recorded dates</strong> in your history are those you clicked directly on the <strong>HOME page</strong> or viewed on the <strong>detail page</strong>.
       </p>
 
-      <div className="sort-buttons">
-        <button
-          type="button" 
-          className={sortOrder === 'recent' ? 'active' : ''}
-          onClick={() => setSortOrder('recent')}
-        >
-          Recent First
-        </button>
-        <button
-          type="button"
-          className={sortOrder === 'dateAsc' ? 'active' : ''}
-          onClick={() => setSortOrder('dateAsc')}
-        >
-          Oldest First
-        </button>
-      </div>
+      {sortedHistory.length > 0 && (
+        <div className="sort-buttons">
+          <button
+            type="button" 
+            className={sortOrder === 'recent' ? 'active' : ''}
+            onClick={() => setSortOrder('recent')}
+          >
+            Recent First
+          </button>
+          <button
+            type="button"
+            className={sortOrder === 'dateAsc' ? 'active' : ''}
+            onClick={() => setSortOrder('dateAsc')}
+          >
+            Oldest First
+          </button>
+        </div>
+      )}
 
       {sortedHistory.length === 0 ? (
-        <p className="app-container-info">You haven't viewed any dates yet. Click on a date to explore and start your journey!</p>
+        <>
+          <div className="error-card">
+            <h2>⚠️ WARNING ⚠️</h2>
+            <p>You haven't viewed any dates yet. Click on a date to explore and start your journey!</p>
+          </div>
+        </>
       ) : (
         <ul className="history-list">
           {sortedHistory.map(date => (
