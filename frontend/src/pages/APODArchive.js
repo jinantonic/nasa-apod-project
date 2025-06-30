@@ -8,6 +8,7 @@ import '../components/APODCard.css';
 function APODArchive() {
   // Destructure global context values and functions
   const { favourites, addFavourite, showModal, modalMessage, showModalHandler, closeModal } = useContext(GlobalContext);
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
 
   const [mediaType, setMediaType] = useState('all');
   const [startDate, setStartDate] = useState('');
@@ -50,7 +51,7 @@ function APODArchive() {
       setLoadingVideoTitles(true);
       try {
         const fetches = videoDates.map(async (date) => {
-          const res = await fetch(`http://localhost:5001/api/apod?date=${date}`);
+          const res = await fetch(`${API_URL}/api/apod?date=${selectedDate}`);
           const data = await res.json();
           return { date, title: data.title || '(no title)' };
         });
@@ -129,7 +130,7 @@ function APODArchive() {
 
       // Fetch APOD data concurrently for all dates
       const fetches = dates.map(async (date) => {
-        const res = await fetch(`http://localhost:5001/api/apod?date=${date}`, {
+        const res = await fetch(`${API_URL}/api/apod?date=${selectedDate}`, {
           signal: controller.signal,
         });
         if (!res.ok) throw new Error(`No data is available for ${date}`);

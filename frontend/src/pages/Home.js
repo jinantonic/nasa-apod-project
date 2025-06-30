@@ -19,6 +19,7 @@ function Home() {
   const [error, setError] = useState(null);
 
   const { favourites, addFavourite, addToHistory, showModal, modalMessage, showModalHandler, closeModal } = useContext(GlobalContext);
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
 
   // Sync URL date parameter to state
   useEffect(() => {
@@ -54,7 +55,7 @@ function Home() {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch(`http://localhost:5001/api/apod?date=${selectedDate}`);
+        const res = await fetch(`${API_URL}/api/apod?date=${selectedDate}`);
         if (!res.ok) throw new Error(`No data is available for ${selectedDate}.`);
 
         const data = await res.json();
