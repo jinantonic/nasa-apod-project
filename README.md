@@ -95,7 +95,28 @@ nasa-apod-project/
 <br /><br /><br />
 
 
-## 💻 Project Structure
+## ⚙️ Project Setup
+### 1️⃣ Clone the repository
+```
+git clone https://github.com/jinantonic/nasa-apod-project.git
+cd nasa-apod-project
+```
+<br /><br />
 
-
+### 2️⃣ Backend setup
+1. Navigate to the frontend directory:
+```
+cd backend
+```
+<br />
+2. Install dependencies:
+```
+npm install
+```
+<br />
+3. Start the backend server:
+```
+npm start
+```
+The backend server will run on 'http://localhost:5001' by default (or as configured).
 
