@@ -18,14 +18,15 @@ This is the **NASA APOD Project**, a web application that lets you explore space
 <br /><br /><br />
 
 
-## ✨ Features
+## ✨ Features to Explore
 - Intro page that brings a mini universe to your screen
 - Browse NASA's Astronomy Picture of the Day (APOD)
 - Explore the APOD archive by date and media type
 - Save your favorite content to a dedicated favorites page
 - View and interact with your browsing history
 - Easily select and explore APODs using a date picker
-- Enjoy an interactive UI with filters, search, modals, and more
+- Enjoy an interactive UI with filters, search, modals, loading and more
+- Error handling for failed API calls
 - Responsive design that works seamlessly across devices
 - Global context for efficient state management (e.g., history and favorites)
 <br /><br /><br />
@@ -95,7 +96,7 @@ nasa-apod-project/
 <br /><br /><br />
 
 
-## ⚙️ Project Setup
+## ⚙️ Setup
 ### 1️⃣ Clone the repository
 ```
 git clone https://github.com/jinantonic/nasa-apod-project.git
@@ -143,6 +144,37 @@ npm start
 ```
 
 The frontend development server will run on http://localhost:3000 by default.
+<br /><br /><br />
+
+
+## 🚀 Deployment
+This project is deployed using two separate services for backend and frontend:
+### 1️⃣ Backend
+The backend server is deployed on [Render](https://render.com/).
+It serves the API endpoints and handles requests to NASA's data.
+The live backend URL is [here](https://nasa-apod-project.onrender.com).
+<br /><br />
+
+### 2️⃣ Frontend
+The frontend is deployed on [Vercel](https://vercel.com/).
+It provides the user interface, consuming the backend API to display NASA APOD data interactively.
+The live frontend URL is [here](https://nasa-apod-project-bybuytjtx-jina-parks-projects.vercel.app/).
+<br /><br /><br />
+
+
+## 🌌 API Reference
+This project uses NASA's public APIs, primarily the Astronomy Picture of the Day (APOD) API, which you can find [here](https://api.nasa.gov/).
+<br /><br /><br />
+
+
+## 💡 Future Improvements
+- Add advanced filters (e.g., by keywords, 더 추가해줘)
+- Support for additional NASA APIs (e.g., Mars Rover Photos, NeoWs)
+- User login & authentication
+- Progressive Web App (PWA) support
+- More pages to explore
+- AI features (e.g., auto-tagging images)
+
 
 
 
