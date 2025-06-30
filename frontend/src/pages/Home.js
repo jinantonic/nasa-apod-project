@@ -59,7 +59,7 @@ function Home() {
         if (!res.ok) throw new Error(`No data is available for ${selectedDate}.`);
 
         const data = await res.json();
-        if (data.code === 404) throw new Error(data.msg || 'No data for this date.');
+        if (data.code === 404) throw new Error(data.msg || 'No data is available for this date.');
 
         setApodData(data);
         addToHistory(selectedDate);
