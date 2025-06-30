@@ -20,11 +20,41 @@ function NavBar() {
   return (
     <nav className={`navbar ${location.pathname === '/' ? 'intro-navbar' : darkMode ? 'dark' : ''}`}>
       <div className="nav-left">
-        <NavLink to="/" className="nav-link" onClick={() => handleClick('/')}>Intro</NavLink>
-        <NavLink to="/home" className="nav-link" onClick={() => handleClick('/home')}>Home</NavLink>
-        <NavLink to="/apodarchive" className="nav-link" onClick={() => handleClick('/apodarchive')}>APOD Archive</NavLink>
-        <NavLink to="/favourites" className="nav-link" onClick={() => handleClick('/favourites')}>Favourites</NavLink>
-        <NavLink to="/history" className="nav-link" onClick={() => handleClick('/history')}>History</NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+          onClick={() => handleClick('/')}
+        >
+          Intro
+        </NavLink>
+        <NavLink
+          to="/home"
+          className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+          onClick={() => handleClick('/home')}
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to="/apodarchive"
+          className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+          onClick={() => handleClick('/apodarchive')}
+        >
+          APOD Archive
+        </NavLink>
+        <NavLink
+          to="/favourites"
+          className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+          onClick={() => handleClick('/favourites')}
+        >
+          Favourites
+        </NavLink>
+        <NavLink
+          to="/history"
+          className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+          onClick={() => handleClick('/history')}
+        >
+          History
+        </NavLink>
       </div>
       <div className="nav-right">
         <label className="switch">
