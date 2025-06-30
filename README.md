@@ -101,10 +101,10 @@ nasa-apod-project/
 git clone https://github.com/jinantonic/nasa-apod-project.git
 cd nasa-apod-project
 ```
-<br /><br />
+<br />
 
 ### 2️⃣ Backend setup
-1. Navigate to the frontend directory:
+1. Navigate to the backend directory:
 ```
 cd backend
 ```
@@ -118,8 +118,31 @@ npm install
 
 3. Start the backend server:
 ```
-npm start
+node index.js
 ```
 
 The backend server will run on http://localhost:5001 by default (or as configured).
+<br /><br />
+
+### 3️⃣ Frontend setup
+1. Navigate to the frontend directory:
+```
+cd frontend
+```
+<br />
+
+2. Install dependencies:
+```
+npm install
+```
+<br />
+
+3. Start the development server:
+```
+npm start
+```
+
+The frontend development server will run on http://localhost:3000 by default.
+
+
 
