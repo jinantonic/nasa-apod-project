@@ -5,7 +5,7 @@ When life gets hard, I often find myself searching for the **moon** and the **st
 <br /><br />
 Living in **Ireland**, we have many cloudy days, which makes it hard to see a clear night sky. Thankfully, **NASA** shares breathtaking photos from beyond the night sky — real glimpses into the universe. I hope this site can be a place you visit whenever you miss the stars and wonder what lies beyond.
 <br /><br />
-This is the **NASA APOD Project**, a web application that lets you explore space through NASA's Astronomy Picture of the Day (APOD) and other NASA open APIs. Built using **React** for the frontend and **Node.js + Express** for the backend, this project showcases space data in a beautiful and interactive way.
+Welcome to the **NASA APOD Project**, a web application that lets you explore space through NASA's Astronomy Picture of the Day (APOD) and other NASA open APIs. Built using **React** for the frontend and **Node.js + Express** for the backend, this project showcases space data in a beautiful and interactive way.
 <br /><br />
 **This project is dedicated to dreamers like me.**
 <br /><br /><br />
@@ -22,13 +22,13 @@ This is the **NASA APOD Project**, a web application that lets you explore space
 - Intro page that brings a mini universe to your screen
 - Browse NASA's Astronomy Picture of the Day (APOD)
 - Explore the APOD archive by date and media type
-- Save your favorite content to a dedicated favorites page
+- Save your favourite content to a dedicated favourites page
 - View and interact with your browsing history
 - Easily select and explore APODs using a date picker
 - Enjoy an interactive UI with filters, search, modals, loading and more
-- Error handling for failed API calls
+- Robust error handling for failed API calls
 - Responsive design that works seamlessly across devices
-- Global context for efficient state management (e.g., history and favorites)
+- Global context for efficient state management (e.g., history and favourites)
 <br /><br /><br />
 
 
@@ -167,13 +167,56 @@ This project uses NASA's public APIs, primarily the Astronomy Picture of the Day
 <br /><br /><br />
 
 
+## 📸 Screenshots
+### Intro Page  
+![Intro Page](frontend/public/screenshots/intro-page.png)<br />
+
+### Home Page  
+![Home Page](frontend/public/screenshots/home-page.png)<br />
+
+### APOD Archive  
+![APOD Archive Page](frontend/public/screenshots/apod-archive-page.png)<br />
+
+### Favourites Page  
+![Favourites](frontend/public/screenshots/favourites-page.png)<br />
+
+### History Page  
+![History](frontend/public/screenshots/history-page.png)<br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br /><br /><br />
+
+
 ## 💡 Future Improvements
-- Add advanced filters (e.g., by keywords, 더 추가해줘)
+- Add advanced keyword-based filters and search capabilities
 - Support for additional NASA APIs (e.g., Mars Rover Photos, NeoWs)
-- User login & authentication
-- Progressive Web App (PWA) support
-- More pages to explore
-- AI features (e.g., auto-tagging images)
+- User login and authentication for personalized features
+- Progressive Web App (PWA) support for offline access and improved mobile experience
+- More pages to explore various space and astronomy topics
+- AI-powered features (e.g., auto-tagging images, image recognition, personalised recommendations)
+
 
 
 
