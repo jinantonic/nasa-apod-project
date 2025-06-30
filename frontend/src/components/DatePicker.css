@@ -45,7 +45,6 @@
 }
 
 /* === Dark Mode Styles === */
-
 .dark .datepicker-label {
   color: #fdaa6e;
 }
@@ -58,6 +57,11 @@
 
 .dark .date-nav-btn {
   color: #fdaa6e;
+}
+
+.dark .date-nav-btn:disabled {
+  color: #7c828a;
+  cursor: not-allowed;
 }
 
 .dark .date-nav-btn:not(:disabled):hover {

@@ -12,6 +12,8 @@ function History() {
   const sortedHistory = [...history];
   if (sortOrder === 'dateAsc') {
     sortedHistory.sort((a, b) => new Date(a) - new Date(b));
+  } else if (sortOrder === 'recent') {
+    sortedHistory.sort((a, b) => new Date(b) - new Date(a));
   }
 
   const handleRemove = (date) => {
