@@ -42,11 +42,11 @@
 }
 
 .intro-navbar .nav-link.active {
-  color: #FF7F00;
+  color: #FF7F00 !important;
 }
 
 .intro-navbar .nav-link:hover {
-  color: #27548A;
+  color: #27548A !important;
 }
 
 /* === Toggle Switch Style === */
