@@ -158,7 +158,7 @@ The live backend URL is [here](https://nasa-apod-project.onrender.com).
 ### 2️⃣ Frontend
 The frontend is deployed on [Vercel](https://vercel.com/).
 It provides the user interface, consuming the backend API to display NASA APOD data interactively.
-The live frontend URL is [here](https://nasa-apod-project-bybuytjtx-jina-parks-projects.vercel.app/).
+The live frontend URL is [here](https://nasa-apod-project-ashy.vercel.app/).
 <br /><br /><br />
 
 
