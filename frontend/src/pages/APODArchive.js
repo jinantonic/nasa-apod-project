@@ -230,7 +230,7 @@ function APODArchive() {
       <h1>🎞️ APOD Archive</h1>
       <div className="filter-controls">
         <label>
-          Media Type
+          <strong>Media Type</strong>
           <select value={mediaType} onChange={handleMediaTypeChange}>
             <option value="all">All</option>
             <option value="image">Image</option>
@@ -239,7 +239,7 @@ function APODArchive() {
         </label>
 
         <label>
-          Start Date
+          <strong>Start Date</strong>
           <input
             type="date"
             value={startDate}
@@ -250,7 +250,7 @@ function APODArchive() {
         </label>
 
         <label>
-          End Date
+          <strong>End Date</strong>
           <input
             type="date"
             value={endDate}

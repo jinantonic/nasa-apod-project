@@ -46,6 +46,9 @@ function Favourites() {
   return (
     <div className="app-container favourites-page">
       <h1>⭐ Your Favourites</h1>
+      <p className="history-info">
+        These are the <strong>APODs</strong> you marked as your <strong>favorites</strong>. Enjoy revisiting your cosmic picks anytime!
+      </p>
 
       {favourites.length > 0 && (
         <div className="sort-buttons">

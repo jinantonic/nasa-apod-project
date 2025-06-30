@@ -238,6 +238,10 @@
   border: 1px solid #444;
 }
 
+.dark .filter-controls label {
+  color: #f5c8a1;
+}
+
 .dark .video-dates-toggle button {
   color: #000000;
   background-color: #f5c8a1;
