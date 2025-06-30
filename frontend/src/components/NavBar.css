@@ -41,6 +41,14 @@
   color: #ffffff;
 }
 
+.intro-navbar .nav-link.active {
+  color: #FF7F00;
+}
+
+.intro-navbar .nav-link:hover {
+  color: #27548A;
+}
+
 /* === Toggle Switch Style === */
 .switch {
   position: relative;
