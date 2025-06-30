@@ -187,30 +187,6 @@ This project uses NASA's public APIs, primarily the Astronomy Picture of the Day
 ### History Page  
 ![Light Page](frontend/public/screenshots/history-page.png)<br />
 ![Dark Mode](frontend/public/screenshots/history-page-dark.png)<br /><br />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <br /><br /><br />
 
 
