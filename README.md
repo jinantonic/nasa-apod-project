@@ -32,10 +32,15 @@ This is the **NASA APOD Project**, a web application that lets you explore space
 
 
 ## 💻 Project Structure
-
 ```plaintext
 nasa-apod-project/
 ├── backend/
+│   ├── controllers/
+│   │   └── apodController.js
+│   ├── routes/
+│   │   └── apod.js
+│   ├── services/
+│   │   └── nasaApiService.js
 │   ├── index.js
 │   ├── package.json
 │   └── ...
@@ -44,28 +49,53 @@ nasa-apod-project/
 │   ├── src/
 │   │   ├── components/
 │   │   │   ├── APODCard/
+│   │   │   │   ├── APODCard.js
+│   │   │   │   └── APODCard.css
 │   │   │   ├── DatePicker/
+│   │   │   │   ├── DatePicker.js
+│   │   │   │   └── DatePicker.css
 │   │   │   ├── Loading/
-│   │   │   ├── NavBar/
+│   │   │   │   ├── Loading.js
+│   │   │   │   └── Loading.css
 │   │   │   ├── Modal/
+│   │   │   │   ├── Modal.js
+│   │   │   │   └── Modal.css
+│   │   │   ├── NavBar/
+│   │   │   │   ├── NavBar.js
+│   │   │   │   └── NavBar.css
 │   │   │   └── Spacebackground.js
 │   │   ├── contexts/
 │   │   │   ├── GlobalContext.js
 │   │   │   └── HistoryContext.js
 │   │   ├── pages/
-│   │   │   ├── APODArchive.js
-│   │   │   ├── Favourites.js
-│   │   │   ├── History.js
+│   │   │   ├── APODArchive/
+│   │   │   │   ├── APODArchive.js
+│   │   │   │   └── APODArchive.css
+│   │   │   ├── Favourites/
+│   │   │   │   ├── Favourites.js
+│   │   │   │   └── Favourites.css
+│   │   │   ├── History/
+│   │   │   │   ├── History.js
+│   │   │   │   └── History.css
 │   │   │   ├── Home.js
-│   │   │   └── Intro.js
-│   │   ├── App.js
-│   │   ├── index.js
+│   │   │   └── Intro/
+│   │   │       ├── Intro.js
+│   │   │       └── Intro.css
+│   │   ├── App/
+│   │   │   ├── App.js
+│   │   │   └── App.css
+│   │   ├── index/
+│   │   │   ├── index.js
+│   │   │   └── index.css
 │   │   └── ...
 │   ├── package.json
 │   └── ...
 └── README.md
 ```
+<br /><br /><br />
 
+
+## 💻 Project Structure
 
 
 
