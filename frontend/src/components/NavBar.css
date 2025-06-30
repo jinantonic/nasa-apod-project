@@ -8,7 +8,6 @@
   left: 0;
   right: 0;
   padding: 12px 24px;
-  color: #000000;
   background-color: #e2e2e9;
   z-index: 1000;
 }
@@ -22,6 +21,7 @@
   margin: 0 15px;
   font-weight: bold;
   text-decoration: none;
+  color: #000000;
 }
 
 .nav-link.active {
@@ -29,7 +29,7 @@
 }
 
 .nav-link:hover {
-  color: #27548A;
+  color: #00D7FF;
 }
 
 /* === Navigation Bar Style for Intro Page === */
@@ -41,11 +41,11 @@
   color: #ffffff;
 }
 
-.intro-navbar .nav-link.active, .dark .intro-navbar .nav-link:hover {
+.intro-navbar .nav-link.active {
   color: #FF7F00;
 }
 
-.intro-navbar .nav-link:hover, .dark .intro-navbar .nav-link.active {
+.intro-navbar .nav-link:hover {
   color: #00D7FF;
 }
 
@@ -113,11 +113,11 @@ input:checked + .slider:before {
   color: #ddd;
 }
 
-.dark .nav-link.active {
+.dark .nav-link.active, .dark .intro-navbar .nav-link.active {
   color: #00D7FF;
 }
 
-.dark .nav-link:hover {
+.dark .nav-link:hover, .dark .intro-navbar .nav-link:hover {
   color: #FF7F00;
 }
 
@@ -128,3 +128,4 @@ input:checked + .slider:before {
 .dark .toggle-label {
   color: #00D7FF;
 }
+
