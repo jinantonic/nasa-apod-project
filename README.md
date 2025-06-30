@@ -28,36 +28,41 @@ This is the **NASA APOD Project**, a web application that lets you explore space
 
 
 ## 💻 Project Structure
+## 💻 Project Structure
+
+```plaintext
 nasa-apod-project/
 ├── backend/
-│ ├── index.js
-│ ├── package.json
-│ └── ...
+│   ├── index.js
+│   ├── package.json
+│   └── ...
 ├── frontend/
-│ ├── public/
-│ ├── src/
-│ │ ├── components/
-│ │ │ ├── APODCard/
-│ │ │ ├── DatePicker/
-│ │ │ ├── Loading/
-│ │ │ ├── NavBar/
-│ │ │ ├── Modal/
-│ │ │ └── Spacebackground.js
-│ │ ├── contexts/
-│ │ │ ├── GlobalContext.js
-│ │ │ └── HistoryContext.js
-│ │ ├── pages/
-│ │ │ ├── APODArchive.js
-│ │ │ ├── Favourites.js
-│ │ │ ├── History.js
-│ │ │ ├── Home.js
-│ │ │ └── Intro.js
-│ │ ├── App.js
-│ │ ├── index.js
-│ │ └── ...
-│ ├── package.json
-│ └── ...
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── APODCard/
+│   │   │   ├── DatePicker/
+│   │   │   ├── Loading/
+│   │   │   ├── NavBar/
+│   │   │   ├── Modal/
+│   │   │   └── Spacebackground.js
+│   │   ├── contexts/
+│   │   │   ├── GlobalContext.js
+│   │   │   └── HistoryContext.js
+│   │   ├── pages/
+│   │   │   ├── APODArchive.js
+│   │   │   ├── Favourites.js
+│   │   │   ├── History.js
+│   │   │   ├── Home.js
+│   │   │   └── Intro.js
+│   │   ├── App.js
+│   │   ├── index.js
+│   │   └── ...
+│   ├── package.json
+│   └── ...
 └── README.md
+```
+
 
 
 
