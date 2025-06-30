@@ -65,10 +65,7 @@
   transition: all 0.3s ease;
 }
 
-/* === Dark Mode Style */
+/* === Dark Mode Style === */
 .dark .app-container-info {
   color: #f5c8a1;
 }
-
-
-  

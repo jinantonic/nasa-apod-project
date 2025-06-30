@@ -41,12 +41,12 @@
   color: #ffffff;
 }
 
-.intro-navbar .nav-link.active {
-  color: #FF7F00 !important;
+.intro-navbar .nav-link.active, .dark .intro-navbar .nav-link:hover {
+  color: #FF7F00;
 }
 
-.intro-navbar .nav-link:hover {
-  color: #27548A !important;
+.intro-navbar .nav-link:hover, .dark .intro-navbar .nav-link.active {
+  color: #00D7FF;
 }
 
 /* === Toggle Switch Style === */
@@ -71,7 +71,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  border-radius: 8cqmax;
+  border-radius: 8px;
   background-color: #FF7F00;
   transition: 0.4s;
 }
@@ -118,7 +118,7 @@ input:checked + .slider:before {
 }
 
 .dark .nav-link:hover {
-  color: #f5c8a1;
+  color: #FF7F00;
 }
 
 .dark .slider:before {
