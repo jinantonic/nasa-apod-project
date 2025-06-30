@@ -169,19 +169,24 @@ This project uses NASA's public APIs, primarily the Astronomy Picture of the Day
 
 ## 📸 Screenshots
 ### Intro Page  
-![Intro Page](frontend/public/screenshots/intro-page.png)<br />
+![Light Mode](frontend/public/screenshots/intro-page.png)<br />
+![Dark Mode](frontend/public/screenshots/intro-page-dark.png)<br /><br />
 
 ### Home Page  
-![Home Page](frontend/public/screenshots/home-page.png)<br />
+![Light Page](frontend/public/screenshots/home-page.png)<br />
+![Dark Mode](frontend/public/screenshots/home-page-dark.png)<br /><br />
 
 ### APOD Archive  
-![APOD Archive Page](frontend/public/screenshots/apod-archive-page.png)<br />
+![Light Page](frontend/public/screenshots/apod-archive-page.png)<br />
+![Dark Mode](frontend/public/screenshots/apod-archive-page-dark.png)<br /><br />
 
 ### Favourites Page  
-![Favourites](frontend/public/screenshots/favourites-page.png)<br />
+![Light Page](frontend/public/screenshots/favourites-page.png)<br />
+![Dark Mode](frontend/public/screenshots/favourites-page-dark.png)<br /><br />
 
 ### History Page  
-![History](frontend/public/screenshots/history-page.png)<br />
+![Light Page](frontend/public/screenshots/history-page.png)<br />
+![Dark Mode](frontend/public/screenshots/history-page-dark.png)<br /><br />
 
 
 
