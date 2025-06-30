@@ -30,7 +30,7 @@
 }
 
 .nav-link:hover {
-  color: #793FDF;
+  color: #27548A;
 }
 
 /* === Navigation Bar Style for Intro Page === */
@@ -111,7 +111,7 @@ input:checked + .slider:before {
 }
 
 .dark .nav-link:hover {
-  color: #0079FF;
+  color: #f5c8a1;
 }
 
 .dark .slider:before {
