@@ -109,14 +109,17 @@ cd nasa-apod-project
 cd backend
 ```
 <br />
+
 2. Install dependencies:
 ```
 npm install
 ```
 <br />
+
 3. Start the backend server:
 ```
 npm start
 ```
+
 The backend server will run on 'http://localhost:5001' by default (or as configured).
 
