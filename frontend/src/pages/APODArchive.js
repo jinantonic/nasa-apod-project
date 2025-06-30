@@ -270,11 +270,7 @@ function APODArchive() {
           <button type="button" onClick={handleClear} className="clear-button">Clear</button>
         </label>
       </div>
-
-      {dateRangeTooLong && (
-        <div>⚠️ Please limit your search to a maximum of 30 days ⚠️</div>
-      )}
-
+      
       <div className="video-dates-toggle">
         <button type="button" onClick={() => setShowVideoDates(prev => !prev)}>
           {showVideoDates ? '⬆️ Hide Sample Video Dates' : '⬇️ Show Sample Video Dates'}
@@ -316,10 +312,15 @@ function APODArchive() {
       </div>
 
       {loading && <Loading />}
-      {error && (
+      {(error || dateRangeTooLong) && (
         <div className="error-card">
           <h2>⚠️ WARNING ⚠️</h2>
-          <p>{error}</p>
+          {dateRangeTooLong && (
+            <p>Please limit your search to a maximum of 30 days</p>
+          )}
+          {error && (
+            <p>{error}</p>
+          )}
         </div>
       )}
 
