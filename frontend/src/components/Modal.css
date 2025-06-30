@@ -30,12 +30,12 @@
 .modal-content button {
   cursor: pointer;
   color: white;
-  background-color: #2563EB;
+  background-color: #27548a;
   border: none;
   border-radius: 4px;
   padding: 8px 16px;
 }
 
 .modal-content button:hover {
-  background-color: #1E40AF;
+  background-color: #00D7FF;
 }

@@ -32,10 +32,10 @@ function Favourites() {
     removeFavourite(date);
 
     setModalContent({
-      title: '🤔 Removed from Favorites 🤔',
+      title: '🗑️ Removed from Favorites 🗑️',
       message: (
         <>
-          <span style={{ fontWeight: 'bold', fontSize: '1.1em' }}>{title}</span> is removed from your favorites.
+          You've removed <span style={{ fontWeight: 'bold', color: '#27548A' }}>{title}</span> from your favorites.
         </>
       ),
     });

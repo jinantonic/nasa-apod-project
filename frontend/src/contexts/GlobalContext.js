@@ -43,10 +43,10 @@ export function GlobalProvider({ children }) {
     setFavourites(updated);
     localStorage.setItem('favourites', JSON.stringify(updated));
     showModalHandler({
-      title: '⭐ Favorites ⭐',
+      title: '⭐️ Added to Favorites ⭐️',
       message: (
           <>
-            <span style={{ fontWeight: 'bold', fontSize: '1.1em' }}>{item.title}</span> has been added your favorites!
+            You successfully added <span style={{ fontWeight: 'bold', color: '#27548A' }}>{item.title}</span> to your favorites!
           </>
         ),
     });

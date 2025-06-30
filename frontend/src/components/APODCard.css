@@ -24,19 +24,14 @@
   }
 }
 
-.dark .apod-card {
-  background-color: #222222;
-  color: #f1f1f1;
-}
-
 .archive-page .apod-card {
   cursor: pointer;
   max-width: 800px;
 }
 
 .archive-page .apod-card:hover {
-  border-color: rgba(230, 105, 124, 0.6);
-  box-shadow: 0 0 8px rgba(255, 182, 193, 0.7);
+  border: 3px solid #FF7F00;
+  box-shadow: 0 0 5px rgba(231, 139, 72, 5);
 }
 
 .home-page .apod-card {
@@ -46,15 +41,15 @@
   border-color: rgba(255, 255, 255, 0.4);
 }
 
+.home-page .apod-card a {
+  cursor: default;
+}
+
 .apod-title {
   font-size: 1.8rem;
   margin-bottom: 0.25rem;
   color: #27548A;
   transition: color 0.3s;
-}
-
-.dark .apod-title {
-  color: #fdaa6e;
 }
 
 .apod-description {
@@ -65,18 +60,10 @@
   color: #22262b;
 }
 
-.dark .apod-description {
-  color: #8da0b8;
-}
-
 .apod-date {
   margin-bottom: 1rem;
   font-size: 0.9rem;
   color: #22262b;
-}
-
-.dark .apod-date {
-  color: #c2c0c0;
 }
 
 .apod-image, .apod-video, iframe {
@@ -160,7 +147,7 @@
 }
 
 .favourite-button.share-button {
-  background-color: #0099b4;
+  background-color: #02aecc;
 }
 
 .favourite-button.share-button:hover {
@@ -178,7 +165,7 @@
   bottom: 70px;
   width: 220px;
   border-radius: 12px;
-  color: white;
+  color: #ffffff;
   background: #333;
   transform: translateX(-50%);
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
@@ -198,7 +185,7 @@
 
 .share-tooltip p strong {
   display: block;
-  margin-top: 16px;
+  margin-top: 20px;
 }
 
 .share-icons {
@@ -293,4 +280,22 @@
     border-color: transparent transparent #333 #333;
     transform: rotate(45deg);
   }
+}
+
+/* === Dark Mode Styles */
+.dark .apod-card {
+  background-color: #222222;
+  color: #f1f1f1;
+}
+
+.dark .apod-title {
+  color: #fdaa6e;
+}
+
+.dark .apod-description {
+  color: #8da0b8;
+}
+
+.dark .apod-date {
+  color: #c2c0c0;
 }

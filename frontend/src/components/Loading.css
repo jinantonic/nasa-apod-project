@@ -13,7 +13,7 @@
   margin-bottom: 10px;
   border-radius: 50%;
   border: 6px solid #e2e2e9;
-  border-left-color: #fdaa6e;
+  border-left-color: #FF7F00;
   animation: spin 1s linear infinite;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .loading-text {
-  color: #000000;
+  color: #FF7F00;
   font-size: 1.2rem;
   font-weight: 600;
 }
@@ -43,5 +43,5 @@
 }
 
 .dark .loading-text {
-  color: white;
+  color: #00D7FF;
 }

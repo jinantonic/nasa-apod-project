@@ -111,7 +111,7 @@ function APODCard({ data, showAddButton = true, onAdd, onError, showDeleteButton
 
           {showShareTooltip && (
             <div className="share-tooltip" role="tooltip" ref={tooltipRef}>
-              <p>✅ Link copied to clipboard ✅<br /><strong>Share on:</strong></p>
+              <p>📋 Link copied to clipboard 📋<br /><strong>Share on:</strong></p>
               <div className="share-icons">
                 <a href={facebookShare} target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook">
                   <FacebookIcon />

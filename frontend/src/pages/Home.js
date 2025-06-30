@@ -76,10 +76,10 @@ function Home() {
   const handleAddFavourite = (item) => {
     if (favourites.some(fav => fav.date === item.date)) {
       showModalHandler({
-        title: '⛔️ Dupliate Add ⛔️',
+        title: '⚠️ Already Added ⚠️',
         message: (
           <>
-            <span style={{ fontWeight: 'bold', fontSize: '1.1em' }}>{item.title}</span> is already in your favorites.
+            You've already added <span style={{ fontWeight: 'bold', color: '#27548A' }}>{item.title}</span> to your favorites.
           </>
         ),
       });
@@ -88,10 +88,10 @@ function Home() {
     addFavourite(item);
 
     showModalHandler({
-      title: '✅ Added to Favorites',
+      title: '⭐️ Added to Favorites ⭐️',
       message: (
         <>
-          <span style={{ fontWeight: 'bold', fontSize: '1.1em' }}>{item.title}</span> was added to your favorites.
+          You successfully added <span style={{ fontWeight: 'bold', color: '#27548A' }}>{item.title}</span> to your favorites!
         </>
       ),
     });

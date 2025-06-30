@@ -15,7 +15,7 @@
   min-width: 120px;
   font-size: 14px;
   font-weight: 500;
-  color: #fbfbfb;
+  color: #27548A;
 }
 
 /* === Inputs and Buttons Styling === */
@@ -26,37 +26,34 @@
   padding: 8px;
   width: 140px;
   font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+  border-radius: 8px;
+  border: 2px solid #426692;
   transition: background-color 0.3s, color 0.3s;
 }
 
-.dark .filter-controls select,
-.dark .filter-controls input[type="date"] {
-  color: #fff;
-  background-color: #2b2b2b;
-  border: 1px solid #444;
-}
-
 .filter-controls button {
-  background-color: #0a84ff;
-  color: white;
+  background-color: #02aecc;
+  color: #ffffff;
   border: none;
   box-sizing: border-box;
   line-height: 1.5;
   cursor: pointer;
 }
 
+.filter-controls select:hover {
+  box-shadow: 0 0 5px rgba(231, 139, 72, 3);
+}
+
 .filter-controls button:hover {
-  background-color: #0066cc;
+  background-color: #0079FF;
 }
 
 .filter-controls .clear-button {
-  background-color: #e53935;
+  background-color: #f7830f;
 }
 
 .filter-controls .clear-button:hover {
-  background-color: #c62828;
+  background-color: #df4f01;
 }
 
 /* === Result Cards and Video Dates Section === */
@@ -72,7 +69,7 @@
   width: 100%;
   min-height: 350px;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: #bdbdc3;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
@@ -93,12 +90,13 @@
   border-radius: 12px 12px 0 0;
   cursor: pointer;
   color: #fff;
-  background-color: #0a84ff;
+  background-color: #27548A;
   transition: background-color 0.3s, transform 0.2s;
 }
 
 .video-dates-toggle button:hover {
-  background-color: #0066cc;
+  color: #000000;
+  background-color: #f5c8a1;
   transform: scale(1.02);
 }
 
@@ -108,7 +106,7 @@
   max-height: 0;
   opacity: 0;
   border-radius: 0 0 12px 12px;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   transition: max-height 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.6s ease;
 }
@@ -126,8 +124,9 @@
 
 .video-dates-content p {
   margin-top: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   font-weight: 500;
+  color: #333;
 }
 
 .video-dates-content ul {
@@ -135,13 +134,18 @@
   margin: 0;
   text-align: left;
   list-style-type: disc;
+  font-size: 17px;
+}
+
+.video-dates-content li strong {
+  color: #27548A;
 }
 
 .video-dates-content li strong:hover {
   padding: 0 3px;
   cursor: pointer;
   border-radius: 4px;
-  background-color: #eee;
+  background-color: #f5c8a1;
   transition: background-color 0.2s;
 }
 
@@ -192,13 +196,14 @@
   position: absolute;
   border: 1px solid #ccc;
   border-radius: 8px;
-  background: white;
+  background: #275489;
   z-index: 1000;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .date-popup p {
   margin: 0 0 4px;
+  color: #ffffff;
 }
 
 .date-popup button {
@@ -209,19 +214,12 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  color: white;
-  background-color: #0a84ff;
+  color: #ffffff;
+  background-color: #f7830f;
 }
 
 .date-popup button:hover {
-  background-color: #0066cc;
-}
-
-/* === Warning Text Styling === */
-.warning-text {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  color: orange;
+  background-color: #02aecc;
 }
 
 /* === Responsive Design === */
@@ -229,4 +227,22 @@
   .results-list {
     column-count: 1;
   }
+}
+
+/* === Dark Mode Style === */
+.dark .filter-controls select,
+.dark .filter-controls input[type="date"] {
+  color: #ffffff;
+  background-color: #2b2b2b;
+  border: 1px solid #444;
+}
+
+.dark .video-dates-toggle button {
+  color: #000000;
+  background-color: #f5c8a1;
+}
+
+.dark .video-dates-toggle button:hover {
+  color: #ffffff;
+  background-color: #27548A;
 }

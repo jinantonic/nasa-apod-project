@@ -20,7 +20,7 @@ function Modal({ isOpen, onClose, title, message }) {
       >
         <h2 id="modal-title">{title}</h2>
         <p>{message}</p>
-        <button type="button" onClick={onClose} aria-label="Close modal">OK</button>
+        <button type="button" onClick={onClose} aria-label="Close modal">Close</button>
       </div>
     </div>
   );
