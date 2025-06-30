@@ -25,7 +25,7 @@
 }
 
 .dark .apod-card {
-  background-color: #1e1e1e;
+  background-color: #222222;
   color: #f1f1f1;
 }
 
@@ -49,12 +49,12 @@
 .apod-title {
   font-size: 1.8rem;
   margin-bottom: 0.25rem;
-  color: #222;
+  color: #27548A;
   transition: color 0.3s;
 }
 
 .dark .apod-title {
-  color: #80d8ff; /* 다크 모드에서 밝고 시원한 블루 계열 */
+  color: #fdaa6e;
 }
 
 .apod-description {
@@ -62,13 +62,21 @@
   margin-top: 2rem;
   line-height: 1.6;
   text-align: justify;
-  color: #bcb7b7;
+  color: #22262b;
+}
+
+.dark .apod-description {
+  color: #8da0b8;
 }
 
 .apod-date {
   margin-bottom: 1rem;
   font-size: 0.9rem;
-  color: #888;
+  color: #22262b;
+}
+
+.dark .apod-date {
+  color: #c2c0c0;
 }
 
 .apod-image, .apod-video, iframe {
@@ -89,9 +97,14 @@
   width: 100%;
   max-width: 1200vw; 
   height: auto;
-  max-height: 80vh;
+  max-height: 800vh;
   object-fit: contain;
   border-radius: 6px;
+}
+
+.home-page .apod-card iframe,
+.home-page .apod-card .apod-video {
+  aspect-ratio: 16 / 9;
 }
 
 /* === Buttons === */
@@ -131,11 +144,11 @@
 }
 
 .favourite-button.add-button {
-  background-color: #169f4b;
+  background-color: #4b9047;
 }
 
 .favourite-button.add-button:hover {
-  background-color: #6de49b;
+  background-color: #27af25;
 }
 
 .favourite-button.delete-button {
@@ -147,11 +160,11 @@
 }
 
 .favourite-button.share-button {
-  background-color: #2196f3;
+  background-color: #0099b4;
 }
 
 .favourite-button.share-button:hover {
-  background-color: #1976d2;
+  background-color: #0079FF;
 }
 
 /* === Share Tooltip === */

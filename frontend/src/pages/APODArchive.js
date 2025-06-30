@@ -132,7 +132,7 @@ function APODArchive() {
         const res = await fetch(`http://localhost:5001/api/apod?date=${date}`, {
           signal: controller.signal,
         });
-        if (!res.ok) throw new Error(`Failed to fetch data for ${date}`);
+        if (!res.ok) throw new Error(`No data is available for ${date}`);
         const data = await res.json();
         return data.code === 404 ? null : data;
       });

@@ -19,7 +19,7 @@ img {
 
 /* === Typography === */
 h1 {
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   text-align: center;
   font-size: 2rem;
   color: black;
@@ -49,14 +49,56 @@ p {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* === Error Message Styles === */
+.error {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 15px 0;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: 3px solid #27548A;
+  color: #ffffff;
+  background-color: #27548A;
+  box-shadow: 0 4px 6px rgba(8, 18, 29, 0.5);
+}
+
+.error-card {
+  text-align: center;
+  margin: 50px auto;
+  padding: 16px;
+  max-width: 600px;
+  border-radius: 8px;
+  border: 3px solid #27548A;
+  color: #ffffff;
+  background-color: #27548A;
+  box-shadow: 0 4px 6px rgba(8, 18, 29, 0.5);
+}
+
+/* === Input Date Styles === */
+input[type="date"] {
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.2s ease;
+}
+
+input[type="date"]:hover {
+  box-shadow: 0 0 5px rgba(231, 139, 72, 3);
+}
+
 /* === Dark Mode Styles === */
 .dark {
-  background-color: #121212;
-  color: #f1f1f1;
+  background-color: #000000;
+  color: #ffffff;
 }
 
 .dark h1 {
-  color: white;
+  color: #ffffff;
+}
+
+.dark .error-card {
+  border: 3px solid #f5c8a1;
+  color: #000000;
+  background-color: #f5c8a1;
+  box-shadow: 0 4px 6px rgb(247, 218, 192);
 }
 
 /* === Responsive Design (Mobile) === */
@@ -78,39 +120,3 @@ p {
     font-size: 0.9rem;
   }
 }
-
-/* === Error Message Styles === */
-.error {
-  margin: 15px 0;
-  padding: 12px 20px;
-  font-weight: 600;
-  font-size: 1rem;
-  text-align: center;
-  border-radius: 8px;
-  border: 1px solid #ffa39e; /* 연한 빨간 테두리 */
-  color: #ff4d4f; /* 선명한 빨간색 */
-  background-color: #fff1f0; /* 연한 빨간 배경 */
-  box-shadow: 0 2px 8px rgba(255, 77, 79, 0.2);
-}
-
-.error-card {
-  margin: 20px auto;
-  padding: 16px;
-  max-width: 600px;
-  text-align: center;
-  border-radius: 8px;
-  border: 1px solid #ffeeba;
-  color: #856404;
-  background-color: #fff3cd;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-
-/* === Input Date Styles === */
-input[type="date"] {
-  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.2s ease;
-}
-
-input[type="date"]:hover {
-  box-shadow: 0 0 5px rgba(255, 77, 79, 0.3); /* 선명한 빨간색, 투명도 0.3 */
-}
-

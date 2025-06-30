@@ -55,7 +55,7 @@ function Home() {
       setError(null);
       try {
         const res = await fetch(`http://localhost:5001/api/apod?date=${selectedDate}`);
-        if (!res.ok) throw new Error('Failed to fetch');
+        if (!res.ok) throw new Error(`No data is available for ${selectedDate}.`);
 
         const data = await res.json();
         if (data.code === 404) throw new Error(data.msg || 'No data for this date.');

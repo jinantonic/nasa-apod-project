@@ -97,7 +97,7 @@
   left: 50%;
   width: 97vmin;
   height: 97vmin;
-  /* transform: translate(-50%, -50%); */
+  transform: translate(-50%, -50%);
   animation: orbit-spin-svg 20s linear infinite;
   z-index: 5;
 }

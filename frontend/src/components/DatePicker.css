@@ -8,14 +8,14 @@
 .datepicker-label {
   font-size: 1rem;
   margin-bottom: 0.5rem;
-  color: #444;
+  color: #27548A;
 }
   
 .datepicker-input {
   font-size: 1rem;
   padding: 0.5rem 1rem;
-  border: 1px solid #ccc;
   border-radius: 8px;
+  border: 2px solid #426692;
 }
 
 .datepicker-input-group {
@@ -28,17 +28,31 @@
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #444;
+  color: #27548A;
   padding: 0 8px;
   user-select: none;
   transition: color 0.3s;
 }
 
 .date-nav-btn:disabled {
-  color: #aaa;
+  color: #afb8c3;
   cursor: not-allowed;
 }
 
 .date-nav-btn:not(:disabled):hover {
-  color: #007bff;
+  color: #E78B48;
+}
+
+/* === Dark Mode Styles === */
+
+.dark .datepicker-label {
+  color: #fdaa6e;
+}
+
+.dark .date-nav-btn {
+  color: #fdaa6e;
+}
+
+.dark .date-nav-btn:not(:disabled):hover {
+  color: #00D7FF;
 }

@@ -33,7 +33,7 @@
   color: #793FDF;
 }
 
-/* --- Navigation Bar Style for Intro Page --- */
+/* === Navigation Bar Style for Intro Page === */
 .intro-navbar {
   background-color: #000000;
 }
@@ -97,7 +97,7 @@ input:checked + .slider:before {
   color: #FF7F00;
 }
 
-/* --- Dark Mode Style --- */
+/* === Dark Mode Style === */
 .dark .navbar {
   background-color: #000000;
 }
