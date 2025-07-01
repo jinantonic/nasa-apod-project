@@ -31,8 +31,8 @@ function APODArchive() {
   const minDate = '1995-06-16';
   const maxDate = new Date().toISOString().split('T')[0];
   const videoDates = [
-    '2012-08-05', '2015-07-16', '2017-08-17', '2018-11-01', 
-    '2019-04-10', '2020-03-03', '2021-02-22', '2023-03-28',
+    '2016-05-11', '2018-11-01', '2019-04-10', '2020-03-03',
+    '2020-09-30', '2021-09-05', '2023-03-20', '2025-02-12',
   ];
 
   // Calculate difference in days between two dates
