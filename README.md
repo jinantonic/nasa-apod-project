@@ -196,3 +196,5 @@ This project uses NASA's public APIs, primarily the Astronomy Picture of the Day
 - Progressive Web App (PWA) support for offline access and improved mobile experience
 - More pages to explore various space and astronomy topics
 - AI-powered features (e.g., auto-tagging images, image recognition, personalised recommendations)
+- Performance optimisation (e.g., code splitting, lazy loading, caching)
+- Comprehensive testing (e.g., Jest and React Testing Library for frontend; Jest for backend)
