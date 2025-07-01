@@ -193,12 +193,7 @@ This project uses NASA's public APIs, primarily the Astronomy Picture of the Day
 ## 💡 Future Improvements
 - Add advanced keyword-based filters and search capabilities
 - Support for additional NASA APIs (e.g., Mars Rover Photos, NeoWs)
-- User login and authentication for personalized features
+- User login and authentication for personalised features
 - Progressive Web App (PWA) support for offline access and improved mobile experience
 - More pages to explore various space and astronomy topics
 - AI-powered features (e.g., auto-tagging images, image recognition, personalised recommendations)
-
-
-
-
-
