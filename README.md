@@ -150,9 +150,8 @@ The frontend development server will run on http://localhost:3000 by default.
 ## 🚀 Deployment
 This project is deployed using two separate services for backend and frontend:
 ### 1️⃣ Backend
-The backend server is deployed on [Render](https://render.com/).
-It serves the API endpoints and handles requests to NASA's data.
-The live backend URL is [here](https://nasa-apod-project.onrender.com).
+The backend server is deployed on [Render](https://render.com/). It serves the API endpoints and handles requests to NASA's data.
+The live backend URL is [here](https://nasa-apod-project.onrender.com), but it only serves API routes like `/api/apod`. Example API endpoint is [here](https://nasa-apod-project.onrender.com/api/apod).
 <br /><br />
 
 ### 2️⃣ Frontend
