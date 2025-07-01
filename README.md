@@ -122,7 +122,7 @@ npm install
 node index.js
 ```
 
-The backend server will run on 'http://localhost:5001' by default (or as configured).
+The backend server will run on http://localhost:5001 by default (or as configured).
 <br /><br />
 
 ### 3️⃣ Frontend setup
@@ -143,7 +143,7 @@ npm install
 npm start
 ```
 
-The frontend development server will run on 'http://localhost:3000' by default.
+The frontend development server will run on http://localhost:3000 by default.
 <br /><br /><br />
 
 
