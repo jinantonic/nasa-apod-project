@@ -19,16 +19,16 @@ Welcome to the **NASA APOD Project**, a web application that lets you explore sp
 
 
 ## ✨ Features to Explore
-- Intro page that brings a mini universe to your screen
-- Browse NASA's Astronomy Picture of the Day (APOD)
-- Explore the APOD archive by date and media type
-- Save your favourite content to a dedicated favourites page
-- View and interact with your browsing history
-- Easily select and explore APODs using a date picker
-- Enjoy an interactive UI with filters, search, modals, loading and more
-- Robust error handling for failed API calls
-- Responsive design that works seamlessly across devices
-- Global context for efficient state management (e.g., history and favourites)
+- Intro page that brings a **mini universe** to your screen
+- Browse **NASA's Astronomy Picture of the Day (APOD)**
+- Explore the **APOD archive** by date and media type
+- Save your **favourite content** to a dedicated favourites page
+- View and interact with your **browsing history**
+- Easily select and explore APODs using a **date picker**
+- Enjoy an **interactive UI** with filters, search, modals, loading and more
+- Robust **error handling** for failed API calls
+- **Responsive design** that works seamlessly across devices
+- **Global context** for efficient state management (e.g., history and favourites)
 <br /><br /><br />
 
 
